@@ -13,6 +13,7 @@ import Signup from "./Signup.jsx";
 import Login from "./Login.jsx";
 import Blog from "./Blog.jsx";
 import BlogDetails from "./BlogDetails.jsx";
+import NewWord from "./NewWord.jsx";
 
 class UnconnectedNavigation extends Component {
   constructor(props) {
@@ -54,7 +55,13 @@ class UnconnectedNavigation extends Component {
           <NavLink to="/"></NavLink>
         </div>
         <div>
-          <NavLink to="/blog"></NavLink>
+          <NavLink to="/dictionary">Dictionary/Home</NavLink>
+        </div>
+        <div>
+          <NavLink to="/new-word">New word</NavLink>
+        </div>
+        <div>
+          <NavLink to="/blog">Blog</NavLink>
         </div>
         <button onClick={this.logout}>Log out</button>
       </nav>
@@ -83,6 +90,7 @@ class UnconnectedApp extends Component {
           <Route exact={true} path="/" component={Login} />
           <Route exact={true} path="/dictionary" component={Dictionary} />
           <Route exact={true} path="/blog" component={Blog} />
+          <Route exact={true} path="/new-word" component={NewWord} />
           <Route exact={true} path="/blog/:id" render={renderBlogPosts} />
           {/* {this.props.loggedIn ? (
             <Route exact={true} path="/dictionary" component={Dictionary} />
