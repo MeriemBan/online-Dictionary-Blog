@@ -41,19 +41,19 @@ app.use("/images", express.static("images"));
 // ...
 
 // GET blog posts
-// app.get("/all-posts", (req, res) => {
-//   dbo
-//     .collection("blog")
-//     .find({})
-//     .toArray((err, blog) => {
-//       if (err) {
-//         console.log("error", err);
-//         res.send("fail");
-//         return;
-//       }
-//       res.send(JSON.stringify(blog));
-//     });
-// });
+app.get("/all-posts", (req, res) => {
+  dbo
+    .collection("blog")
+    .find({})
+    .toArray((err, blog) => {
+      if (err) {
+        console.log("error", err);
+        res.send("fail");
+        return;
+      }
+      res.send(JSON.stringify(blog));
+    });
+});
 
 // POST endpoints
 // signup, login, logout, like, search-item, new-post, add-review, new-word
@@ -149,11 +149,37 @@ app.post("/logout", upload.none(), (req, res) => {
   console.log("sessions", sessions);
 });
 
-// search-item
-// ...
+// search-word ???
+app.post("/search-word", upload.none(), (req, res) => {
+  console.log("word", req.body.word);
+  dbo.collection("dictionary").findOne({ name: req.body.word }, (err, word) => {
+    if (err) {
+      console.log("error", err);
+      res.send("fail");
+      return;
+    }
+    console.log("word", word);
+    res.send(JSON.stringify(word));
+  });
+});
 
 // new-word
-// ...
+app.post("/new-word", upload.none(), (req, res) => {
+  console.log("req.body", req.body);
+
+  dbo.collection("dictionary").insertOne({
+    letter: req.body.letter,
+    english_word: req.body.englishWord,
+    french_word: req.body.frenchWord,
+    arabic_word: req.body.arabicWord,
+    arabic_definition: req.body.arabicDefinition
+  });
+  res.send(
+    JSON.stringify({
+      success: true
+    })
+  );
+});
 
 // new-post
 app.post("/new-post", upload.single("postImage"), (req, res) => {
