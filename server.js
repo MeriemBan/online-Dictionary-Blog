@@ -69,7 +69,7 @@ app.post("/signup", upload.none(), (req, res) => {
   dbo
     .collection("users")
     .findOne({ username: username }, (err, expectedUsername) => {
-      console.log("expectedemail", expectedemail);
+
       if (err) {
         res.send(JSON.stringify({ success: false }));
         return;
@@ -152,7 +152,7 @@ app.post("/logout", upload.none(), (req, res) => {
 // search-word ???
 app.post("/search-word", upload.none(), (req, res) => {
   console.log("word", req.body.word);
-  dbo.collection("dictionary").findOne({ name: req.body.word }, (err, word) => {
+  dbo.collection("contents").findOne({ name: req.body.word }, (err, word) => {
     if (err) {
       console.log("error", err);
       res.send("fail");
@@ -167,7 +167,7 @@ app.post("/search-word", upload.none(), (req, res) => {
 app.post("/new-word", upload.none(), (req, res) => {
   console.log("req.body", req.body);
 
-  dbo.collection("dictionary").insertOne({
+  dbo.collection("contents").insertOne({
     letter: req.body.letter,
     english_word: req.body.englishWord,
     french_word: req.body.frenchWord,
