@@ -1,17 +1,63 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 // import css file
 
 class UnconnectedBlog extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { blog: [], page: 0 };
   }
+  // retrive blogs
+  componentDidMount = /*async*/ () => {
+    let updatePosts = async () => {
+      // get all items from the server
+      let response = await fetch("/all-posts");
+      let responseBody = await response.text();
+      //   console.log("responseBody", responseBody);
+      let parsed = JSON.parse(responseBody);
+      console.log("parsed", parsed);
+      this.props.dispatch({ type: "display-posts", blogs: parsed });
+    };
+    setInterval(updatePosts, 1000);
+  };
 
+  // add pagination
   render = () => {
-    return <div>Blog section here</div>;
+    return (
+      <div>
+        Blog section here
+        {/* {admin only} */}
+        <Link to="/newPost">New post</Link>
+        <div>
+          {this.props.blogs
+            ? this.props.blogs.map(blogPost => {
+                return (
+                  <div>
+                    <h2>{blogPost.title}</h2>
+                    <h3>{blogPost.author}</h3>
+                    <h4>{blogPost.date}</h4>
+                    <Link to={"/blog/" + blogPost._id}>
+                      <img src={blogPost.image} />
+                    </Link>
+                    {/* <div>{blogPost.tags.join("-")}</div>
+                    <div>{blogPost.likes + " likes"}</div> */}
+                    {/* {add like button} */}
+                  </div>
+                );
+              })
+            : "Blog empty"}
+        </div>
+      </div>
+    );
   };
 }
 
-let Blog = connect()(UnconnectedBlog);
+let mapStateToProps = state => {
+  return {
+    blogs: state.blogs,
+    username: state.username
+  };
+};
+let Blog = connect(mapStateToProps)(UnconnectedBlog);
 export default Blog;

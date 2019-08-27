@@ -18,6 +18,12 @@ let reducer = (state, action) => {
   if (action.type === "logout") {
     return { ...state, loggedIn: false, username: action.username };
   }
+  if (action.type === "search-result") {
+    return { ...state, searchResult: action.searchResult };
+  }
+  if (action.type === "display-posts") {
+    return { ...state, blogs: action.blogs };
+  }
 
   return state;
 };
@@ -29,7 +35,7 @@ const store = createStore(
     signedIn: false,
     username: "",
     blogs: [],
-    dictionary: []
+    searchResult: ""
   },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );

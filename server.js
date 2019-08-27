@@ -8,9 +8,14 @@ let ObjectID = require("mongodb").ObjectID;
 let dbo = undefined;
 let url =
   "mongodb+srv://dico:dico@cluster0-qsqfa.mongodb.net/test?retryWrites=true&w=majority";
-MongoClient.connect(url, { useNewUrlParser: true }, (err, db) => {
-  dbo = db.db("dico");
-});
+MongoClient.connect(
+  url,
+  { useUnifiedTopology: true },
+  { useNewUrlParser: true },
+  (err, db) => {
+    dbo = db.db("dico");
+  }
+);
 
 // hash passwords using sha1
 let sha1 = require("sha1");
@@ -34,6 +39,8 @@ app.use("/", express.static("public")); // Needed for local assets
 app.use("/uploads", express.static("uploads")); // Needed for local assets
 app.use("/images", express.static("images"));
 
+app.use("/images", express.static(__dirname + "/uploads"));
+
 // Your endpoints go after this line
 
 // GET endpoints
@@ -45,13 +52,13 @@ app.get("/all-posts", (req, res) => {
   dbo
     .collection("blog")
     .find({})
-    .toArray((err, blog) => {
+    .toArray((err, blogs) => {
       if (err) {
         console.log("error", err);
         res.send("fail");
         return;
       }
-      res.send(JSON.stringify(blog));
+      res.send(JSON.stringify(blogs));
     });
 });
 
@@ -69,7 +76,6 @@ app.post("/signup", upload.none(), (req, res) => {
   dbo
     .collection("users")
     .findOne({ username: username }, (err, expectedUsername) => {
-
       if (err) {
         res.send(JSON.stringify({ success: false }));
         return;
@@ -151,24 +157,27 @@ app.post("/logout", upload.none(), (req, res) => {
 
 // search-word ???
 app.post("/search-word", upload.none(), (req, res) => {
-  console.log("word", req.body.word);
-  dbo.collection("contents").findOne({ name: req.body.word }, (err, word) => {
-    if (err) {
-      console.log("error", err);
-      res.send("fail");
-      return;
-    }
-    console.log("word", word);
-    res.send(JSON.stringify(word));
-  });
+  console.log("english_word", req.body.english_word);
+  dbo
+    .collection("contents")
+    .findOne({ english_word: req.body.english_word }, (err, wordDefinition) => {
+      if (err) {
+        console.log("error", err);
+        res.send("fail");
+        return;
+      }
+
+      res.send(JSON.stringify(wordDefinition));
+    });
 });
 
 // new-word
 app.post("/new-word", upload.none(), (req, res) => {
   console.log("req.body", req.body);
+  let englishWord = req.body.englishWord;
 
   dbo.collection("contents").insertOne({
-    letter: req.body.letter,
+    letter: englishWord.charAt(0).toLowerCase(),
     english_word: req.body.englishWord,
     french_word: req.body.frenchWord,
     arabic_word: req.body.arabicWord,
@@ -182,36 +191,43 @@ app.post("/new-word", upload.none(), (req, res) => {
 });
 
 // new-post
-app.post("/new-post", upload.single("postImage"), (req, res) => {
+app.post("/new-post", upload.single("file"), (req, res) => {
+  console.log("/new-post endpoint");
   console.log("request to /new-post body", req.body);
+  let sessionId = req.cookies.sid;
+  let username = sessions[sessionId];
   let time = new Date();
   let formattedTime = time.toLocaleString(undefined, {
     year: "2-digit",
     month: "2-digit",
     day: "2-digit"
   });
-  console.log(req.file);
+  console.log("req.file.filename", req.file.filename);
   let filePath;
 
   if (req.file !== undefined) {
     filePath = "/uploads/" + req.file.filename;
+    console.log("filePath", filePath);
   }
 
-  dbo.collection("blog").insertOne({
-    title: req.body.title,
-    author: req.body.username,
-    date: formattedTime,
-    image: filePath,
-    post: req.body.post,
-    // tags is an array
-    tags: req.body.tags,
-    likes: req.body.likes,
-    reviews: []
-  });
-  res.send(
-    JSON.stringify({
-      success: true
-    })
+  dbo.collection("blog").insertOne(
+    {
+      title: req.body.title,
+      author: username,
+      date: formattedTime,
+      image: filePath,
+      post: req.body.post
+      // tags is an array
+      // tags: req.body.tags
+    },
+    (err, result) => {
+      if (err) {
+        console.log("error", err);
+        res.send("fail");
+        return;
+      }
+      res.send(JSON.stringify({ success: true }));
+    }
   );
 });
 

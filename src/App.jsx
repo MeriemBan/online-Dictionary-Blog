@@ -14,6 +14,7 @@ import Login from "./Login.jsx";
 import Blog from "./Blog.jsx";
 import BlogDetails from "./BlogDetails.jsx";
 import NewWord from "./NewWord.jsx";
+import NewPost from "./NewPost.jsx";
 
 class UnconnectedNavigation extends Component {
   constructor(props) {
@@ -44,6 +45,10 @@ class UnconnectedNavigation extends Component {
     let response = await (await fetch("/logout", { method: "POST" })).text();
     let body = JSON.parse(response);
     if (body.success) {
+      // this.props.dispatch({
+      //   type: "logout",
+      //   username: this.state.username
+      // });
       this.props.history.push("/");
     }
   };
@@ -51,19 +56,15 @@ class UnconnectedNavigation extends Component {
     console.log("this.state.username", this.state.username);
     return (
       <nav>
-        <div>
-          <NavLink to="/"></NavLink>
-        </div>
-        <div>
-          <NavLink to="/dictionary">Dictionary/Home</NavLink>
-        </div>
-        <div>
-          <NavLink to="/new-word">New word</NavLink>
-        </div>
-        <div>
-          <NavLink to="/blog">Blog</NavLink>
-        </div>
-        <button onClick={this.logout}>Log out</button>
+        <button onClick={this.logout}>
+          <NavLink to="/">Log out</NavLink>
+        </button>
+        <br />
+        <NavLink to="/dictionary">Dictionary/Home</NavLink>
+        <br />
+        <NavLink to="/newWord">New word</NavLink>
+        <br />
+        <NavLink to="/blog">Blog</NavLink>
       </nav>
     );
   };
@@ -76,6 +77,9 @@ let renderBlogPosts = routerData => {
         id={routerData.match.params.id}
         history={routerData.history}
       />
+      <NewPost id={routerData.match.params.id} history={routerData.history} />
+      {/* id={routerData.match.params.id}
+      history={routerData.history} */}
     </div>
   );
 };
@@ -88,11 +92,12 @@ class UnconnectedApp extends Component {
           <Navigation />
           <Route exact={true} path="/signup" component={Signup} />
           <Route exact={true} path="/" component={Login} />
-          <Route exact={true} path="/dictionary" component={Dictionary} />
-          <Route exact={true} path="/blog" component={Blog} />
-          <Route exact={true} path="/new-word" component={NewWord} />
-          <Route exact={true} path="/blog/:id" render={renderBlogPosts} />
-          {/* {this.props.loggedIn ? (
+          {/* <Route exact={true} path="/dictionary" component={Dictionary} /> */}
+          {/* <Route exact={true} path="/blog" component={Blog} /> */}
+          {/* <Route exact={true} path="/newWord" component={NewWord} /> */}
+          <Route exact={true} path="/newPost" component={NewPost} />
+          {/* <Route exact={true} path="/blog/:id" render={renderBlogPosts} /> */}
+          {this.props.loggedIn ? (
             <Route exact={true} path="/dictionary" component={Dictionary} />
           ) : (
             <Redirect
@@ -100,8 +105,25 @@ class UnconnectedApp extends Component {
                 pathname: "/"
               }}
             />
+          )}
+          {this.props.loggedIn ? (
+            <Route exact={true} path="/newWord" component={NewWord} />
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/"
+              }}
+            />
+          )}
+          {/* {this.props.loggedIn ? (
+            <Route exact={true} path="/newPost" component={NewPost} />
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/"
+              }}
+            />
           )} */}
-          {/* 
           {this.props.loggedIn ? (
             <Route exact={true} path="/blog" component={Blog} />
           ) : (
@@ -110,9 +132,8 @@ class UnconnectedApp extends Component {
                 pathname: "/"
               }}
             />
-          )} */}
-
-          {/* {this.props.loggedIn ? (
+          )}
+          {this.props.loggedIn ? (
             <Route exact={true} path="/blog/:id" render={renderBlogPosts} />
           ) : (
             <Redirect
@@ -120,7 +141,7 @@ class UnconnectedApp extends Component {
                 pathname: "/"
               }}
             />
-          )} */}
+          )}
         </Router>
       </div>
     );
