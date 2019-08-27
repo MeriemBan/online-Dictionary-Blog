@@ -155,19 +155,38 @@ app.post("/logout", upload.none(), (req, res) => {
   console.log("sessions", sessions);
 });
 
-// search-word ???
+// search-word
 app.post("/search-word", upload.none(), (req, res) => {
-  console.log("english_word", req.body.english_word);
+  console.log("searchInput", req.body.searchInput);
+  let startWord = parseInt(req.body.page);
   dbo
     .collection("contents")
-    .findOne({ english_word: req.body.english_word }, (err, wordDefinition) => {
+    .findOne({ englishWord: req.body.searchInput }, (err, singleResult) => {
       if (err) {
         console.log("error", err);
         res.send("fail");
         return;
       }
-
-      res.send(JSON.stringify(wordDefinition));
+      if (singleResult !== null) {
+        res.send(JSON.stringify(singleResult));
+        return;
+      }
+      console.log("singleResult", singleResult);
+      dbo
+        .collection("contents")
+        .find({ letter: req.body.searchInput.charAt(0) })
+        .toArray((err, multipleResults) => {
+          if (err) {
+            console.log("error", err);
+            res.send("fail");
+            return;
+          }
+          res.send(
+            JSON.stringify(
+              multipleResults.slice(startWord * 3, startWord * 3 + 3)
+            )
+          );
+        });
     });
 });
 
@@ -202,6 +221,7 @@ app.post("/new-post", upload.single("file"), (req, res) => {
     month: "2-digit",
     day: "2-digit"
   });
+  console.log("req.body.tags", req.body.tags);
   console.log("req.file.filename", req.file.filename);
   let filePath;
 
@@ -216,9 +236,9 @@ app.post("/new-post", upload.single("file"), (req, res) => {
       author: username,
       date: formattedTime,
       image: filePath,
-      post: req.body.post
+      post: req.body.post,
       // tags is an array
-      // tags: req.body.tags
+      tags: req.body.tags
     },
     (err, result) => {
       if (err) {
@@ -260,8 +280,8 @@ app.post("/like", upload.none(), (req, res) => {
 app.post("/add-review", upload.none(), (req, res) => {
   console.log("our review: ", req.body.review);
   let review = req.body.review;
-  let sessionId = req.cookies.sid;
-  let currentUser = sessions[sessionId];
+  // let sessionId = req.cookies.sid;
+  // let currentUser = sessions[sessionId];
   let time = new Date();
   let formattedTime = time.toLocaleString(undefined, {
     year: "2-digit",
@@ -273,8 +293,8 @@ app.post("/add-review", upload.none(), (req, res) => {
     { _id: ObjectID(req.body.blogPostId) },
     {
       $push: {
-        review: {
-          username: currentUser,
+        reviews: {
+          username: req.body.username,
           date: formattedTime,
           review_message: review
         }

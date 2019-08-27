@@ -16,7 +16,7 @@ class UnconnectedBlog extends Component {
       let responseBody = await response.text();
       //   console.log("responseBody", responseBody);
       let parsed = JSON.parse(responseBody);
-      console.log("parsed", parsed);
+      // console.log("parsed", parsed);
       this.props.dispatch({ type: "display-posts", blogs: parsed });
     };
     setInterval(updatePosts, 1000);
@@ -40,9 +40,15 @@ class UnconnectedBlog extends Component {
                     <Link to={"/blog/" + blogPost._id}>
                       <img src={blogPost.image} />
                     </Link>
-                    {/* <div>{blogPost.tags.join("-")}</div>
-                    <div>{blogPost.likes + " likes"}</div> */}
-                    {/* {add like button} */}
+                    <div>
+                      {/* {blogPost.tags !== []
+                        ? blogPost.tags.map(tag => {
+                            return <div>{tag}</div>;
+                          })
+                        : null} */}
+                    </div>
+                    {/* <div>{blogPost.likes + " likes"}</div> */}
+                    {/* {add like button}*/}
                   </div>
                 );
               })

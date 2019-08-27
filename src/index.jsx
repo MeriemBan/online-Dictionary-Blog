@@ -19,7 +19,11 @@ let reducer = (state, action) => {
     return { ...state, loggedIn: false, username: action.username };
   }
   if (action.type === "search-result") {
-    return { ...state, searchResult: action.searchResult };
+    return {
+      ...state,
+      searchResult: action.searchResult,
+      enteredWord: action.enteredWord
+    };
   }
   if (action.type === "display-posts") {
     return { ...state, blogs: action.blogs };

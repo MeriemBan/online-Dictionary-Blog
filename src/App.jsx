@@ -25,20 +25,20 @@ class UnconnectedNavigation extends Component {
       //   color: "#101010"
     };
   }
-  listenScrollEvent = e => {
-    if (window.scrollY > 400) {
-      this.setState({ color: "#101010" });
-    } else {
-      this.setState({ color: "#101010" });
-    }
-  };
+  // listenScrollEvent = e => {
+  //   if (window.scrollY > 400) {
+  //     this.setState({ color: "#101010" });
+  //   } else {
+  //     this.setState({ color: "#101010" });
+  //   }
+  // };
 
-  componentDidMount() {
-    window.addEventListener("scroll", this.listenScrollEvent);
-  }
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.listenScrollEvent);
-  }
+  // componentDidMount() {
+  //   window.addEventListener("scroll", this.listenScrollEvent);
+  // }
+  // componentWillUnmount() {
+  //   window.removeEventListener("scroll", this.listenScrollEvent);
+  // }
 
   logout = async () => {
     console.log("clicked logout");
@@ -77,9 +77,6 @@ let renderBlogPosts = routerData => {
         id={routerData.match.params.id}
         history={routerData.history}
       />
-      <NewPost id={routerData.match.params.id} history={routerData.history} />
-      {/* id={routerData.match.params.id}
-      history={routerData.history} */}
     </div>
   );
 };
