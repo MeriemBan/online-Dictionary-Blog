@@ -10,6 +10,7 @@ class UnconnectedDictionary extends Component {
   }
   // search for exact value, to be modified
   handleSearchChange = async event => {
+    event.preventDefault();
     this.setState({
       enteredWord: event.target.value
     });
@@ -60,7 +61,7 @@ class UnconnectedDictionary extends Component {
 
     return (
       <div>
-        <label> Explore our library of over than 1000 words! </label>
+        <h2> Explore our library of over than 1000 words! </h2>
         <form>
           <input
             type="text"
@@ -74,12 +75,33 @@ class UnconnectedDictionary extends Component {
           ? this.props.searchResult.map(result => {
               return (
                 <div>
-                  <h2>English: {result.english_word}</h2>
-                  <h2>French: {result.french_word}</h2>
-                  <h2>Arabic: {result.arabic_word}</h2>
-                  <h3>Arabic definition:</h3>
-                  <h3>{result.arabic_definition}</h3>
                   <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      border: "solid 1px",
+                      padding: "20px"
+                    }}
+                  >
+                    <div>
+                      <h4>English </h4>
+                      <span>{result.english_word}</span>
+                    </div>
+                    <br />
+                    <div>
+                      <h4>French</h4>
+                      <span>{result.french_word}</span>
+                    </div>
+                    <br />
+                    <div>
+                      <h4>Arabic</h4>
+                      <span>{result.arabic_word}</span>
+                      <br />
+                      <em>{result.arabic_definition}</em>
+                    </div>
+                    <br />
+                  </div>
+                  {/* <div
                     style={
                       this.props.searchResult.length > 1
                         ? { display: "block" }
@@ -87,7 +109,7 @@ class UnconnectedDictionary extends Component {
                     }
                   >
                     <br /> -o- <br />
-                  </div>
+                  </div> */}
                 </div>
               );
             })

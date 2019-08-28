@@ -181,10 +181,18 @@ app.post("/search-word", upload.none(), (req, res) => {
             res.send("fail");
             return;
           }
+
+          let result = multipleResults.filter(elem => {
+            if (
+              elem.english_word
+                .toLowerCase()
+                .includes(req.body.searchInput.toLowerCase())
+            ) {
+              return elem.english_word;
+            }
+          });
           res.send(
-            JSON.stringify(
-              multipleResults.slice(startWord * 3, startWord * 3 + 3)
-            )
+            JSON.stringify(result.slice(startWord * 3, startWord * 3 + 3))
           );
         });
     });
@@ -195,17 +203,22 @@ app.post("/new-word", upload.none(), (req, res) => {
   console.log("req.body", req.body);
   let englishWord = req.body.englishWord;
 
-  dbo.collection("contents").insertOne({
-    letter: englishWord.charAt(0).toLowerCase(),
-    english_word: req.body.englishWord,
-    french_word: req.body.frenchWord,
-    arabic_word: req.body.arabicWord,
-    arabic_definition: req.body.arabicDefinition
-  });
-  res.send(
-    JSON.stringify({
-      success: true
-    })
+  dbo.collection("contents").insertOne(
+    {
+      letter: englishWord.charAt(0).toLowerCase(),
+      english_word: req.body.englishWord,
+      french_word: req.body.frenchWord,
+      arabic_word: req.body.arabicWord,
+      arabic_definition: req.body.arabicDefinition
+    },
+    (err, result) => {
+      if (err) {
+        console.log("error", err);
+        res.send("fail");
+        return;
+      }
+      res.send(JSON.stringify({ success: true }));
+    }
   );
 });
 

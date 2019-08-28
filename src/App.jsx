@@ -15,6 +15,7 @@ import Blog from "./Blog.jsx";
 import BlogDetails from "./BlogDetails.jsx";
 import NewWord from "./NewWord.jsx";
 import NewPost from "./NewPost.jsx";
+import "./main.css";
 
 class UnconnectedNavigation extends Component {
   constructor(props) {
@@ -45,10 +46,6 @@ class UnconnectedNavigation extends Component {
     let response = await (await fetch("/logout", { method: "POST" })).text();
     let body = JSON.parse(response);
     if (body.success) {
-      // this.props.dispatch({
-      //   type: "logout",
-      //   username: this.state.username
-      // });
       this.props.history.push("/");
     }
   };
@@ -60,11 +57,14 @@ class UnconnectedNavigation extends Component {
           <NavLink to="/">Log out</NavLink>
         </button>
         <br />
+        <NavLink to="/signup">Sign Up</NavLink>
+        <br />
         <NavLink to="/dictionary">Dictionary/Home</NavLink>
         <br />
         <NavLink to="/newWord">New word</NavLink>
         <br />
         <NavLink to="/blog">Blog</NavLink>
+        <br />
       </nav>
     );
   };
@@ -85,8 +85,12 @@ class UnconnectedApp extends Component {
   render = () => {
     return (
       <div>
+        <br />
+        {this.props.username ? <div>{"hi " + this.props.username}</div> : null}
+
         <Router>
           <Navigation />
+          <br />
           <Route exact={true} path="/signup" component={Signup} />
           <Route exact={true} path="/" component={Login} />
           {/* <Route exact={true} path="/dictionary" component={Dictionary} /> */}

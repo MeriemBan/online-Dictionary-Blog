@@ -26,7 +26,6 @@ class UnconnectedBlog extends Component {
   render = () => {
     return (
       <div>
-        Blog section here
         {/* {admin only} */}
         <Link to="/newPost">New post</Link>
         <div>
@@ -41,11 +40,10 @@ class UnconnectedBlog extends Component {
                       <img src={blogPost.image} />
                     </Link>
                     <div>
-                      {/* {blogPost.tags !== []
-                        ? blogPost.tags.map(tag => {
-                            return <div>{tag}</div>;
-                          })
-                        : null} */}
+                      Tags:{" "}
+                      {blogPost.tags !== null
+                        ? blogPost.tags.split(",").join(" - ")
+                        : null}
                     </div>
                     {/* <div>{blogPost.likes + " likes"}</div> */}
                     {/* {add like button}*/}

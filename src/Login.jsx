@@ -42,9 +42,8 @@ class UnconnectedLogin extends Component {
       this.props.history.push("/dictionary");
       return;
     }
-
-    this.setState({ username: "", password: "" });
     alert("Oops, wrong username or password, please try again");
+    this.setState({ username: "", password: "" });
   };
 
   render = () => {

@@ -23,6 +23,7 @@ class UnconnectedBlogDetails extends Component {
       credentials: "include"
     });
     let responseBody = await response.text();
+    let body = JSON.parse(responseBody);
     if (body.success) {
       this.setState({ ...this.state, review: "" });
     }
@@ -54,7 +55,7 @@ class UnconnectedBlogDetails extends Component {
                 <h2>{blogPost.title}</h2>
                 <h3>{blogPost.author}</h3>
                 <h4>{blogPost.date}</h4>
-                <img src={blogPost.image} />
+                <img width="810" height="562" src={blogPost.image} />
                 <div>{blogPost.post}</div>
                 <div>
                   Tags:{" "}

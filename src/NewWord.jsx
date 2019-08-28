@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 // import css file
 
 class UnconnectedNewWord extends Component {
@@ -13,7 +14,8 @@ class UnconnectedNewWord extends Component {
       arabic_definition: ""
     };
   }
-  submitNewWord = async event => {
+  submitNewWord = async () => {
+    event.preventDefault();
     let data = new FormData();
     data.append("englishWord", this.state.english_word);
     data.append("frenchWord", this.state.french_word);
@@ -25,11 +27,15 @@ class UnconnectedNewWord extends Component {
       credentials: "include"
     });
     let responseBody = await response.text();
+    let body = JSON.parse(responseBody);
     if (body.success) {
+      console.log("body success");
       alert("word successfully added");
       this.props.history.push("/dictionary");
+      // <Redirect to="/dictionary" />;
       return;
     }
+    console.log("not successful");
     alert("Oops! a problem occured, please try again");
   };
 
