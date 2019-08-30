@@ -1,19 +1,46 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import {
+  englishWords,
+  frenchWords,
+  arabicWords,
+  arabicDefinitions
+} from "./Data_dictionary.jsx";
 // import css file
 
 class UnconnectedNewWord extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      letter: "",
       english_word: "",
       french_word: "",
       arabic_word: "",
       arabic_definition: ""
     };
   }
+  // upload dictonary
+  upload = async () => {
+    event.preventDefault();
+    let data = new FormData();
+
+    for (let i = 0; i < englishWords.length; i++) {
+      // console.log("englishWords[i]", englishWords[i]);
+      data.append("englishWord", englishWords[i]);
+      data.append("frenchWord", frenchWords[i]);
+      data.append("arabicWord", arabicWords[i]);
+      data.append("arabicDefinition", arabicDefinitions[i]);
+    }
+
+    let response = await fetch("/upload-dico", {
+      method: "POST",
+      body: data,
+      credentials: "include"
+    });
+    let responseBody = await response.text();
+  };
+
+  // upload a new word
   submitNewWord = async () => {
     event.preventDefault();
     let data = new FormData();
@@ -92,6 +119,11 @@ class UnconnectedNewWord extends Component {
           />
           <input type="submit" value="add to dictionary" />
         </form>
+        <div>
+          {" "}
+          {/* only admin */}
+          <button onClick={this.upload}>upload dictionary</button>
+        </div>
       </div>
     );
   };

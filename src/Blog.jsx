@@ -36,15 +36,16 @@ class UnconnectedBlog extends Component {
                     <h2>{blogPost.title}</h2>
                     <h3>{blogPost.author}</h3>
                     <h4>{blogPost.date}</h4>
-                    <Link to={"/blog/" + blogPost._id}>
-                      <img src={blogPost.image} />
-                    </Link>
                     <div>
                       Tags:{" "}
                       {blogPost.tags !== null
                         ? blogPost.tags.split(",").join(" - ")
                         : null}
                     </div>
+                    <Link to={"/blog/" + blogPost._id}>
+                      <img src={blogPost.image} className="blogimg" />
+                    </Link>
+
                     {/* <div>{blogPost.likes + " likes"}</div> */}
                     {/* {add like button}*/}
                   </div>

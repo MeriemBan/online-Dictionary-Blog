@@ -158,10 +158,53 @@ app.post("/logout", upload.none(), (req, res) => {
 // search-word
 app.post("/search-word", upload.none(), (req, res) => {
   console.log("searchInput", req.body.searchInput);
+  console.log("req.body.language", req.body.language);
   let startWord = parseInt(req.body.page);
+  if (req.body.searchInput !== "" && req.body.language === "english") {
+    dbo
+      .collection("contents")
+      .findOne({ english_word: req.body.searchInput }, (err, singleResult) => {
+        if (err) {
+          console.log("error", err);
+          res.send("fail");
+          return;
+        }
+        if (singleResult !== null) {
+          res.send(JSON.stringify(singleResult));
+          return;
+        }
+        // console.log("singleResult", singleResult);
+        dbo
+          .collection("contents")
+          .find({ letter: req.body.searchInput.charAt(0) })
+          .toArray((err, multipleResults) => {
+            if (err) {
+              console.log("error", err);
+              res.send("fail");
+              return;
+            }
+
+            let result = multipleResults.filter(elem => {
+              if (
+                elem.english_word
+                  .toLowerCase()
+                  .startsWith(req.body.searchInput.toLowerCase())
+                // .includes(req.body.searchInput.toLowerCase())
+              ) {
+                return elem.english_word;
+              }
+            });
+            // console.log('result', result)
+            res.send(
+              JSON.stringify(result.slice(startWord * 3, startWord * 3 + 3))
+            );
+          });
+      });
+    return;
+  }
   dbo
     .collection("contents")
-    .findOne({ englishWord: req.body.searchInput }, (err, singleResult) => {
+    .findOne({ french_word: req.body.searchInput }, (err, singleResult) => {
       if (err) {
         console.log("error", err);
         res.send("fail");
@@ -171,10 +214,10 @@ app.post("/search-word", upload.none(), (req, res) => {
         res.send(JSON.stringify(singleResult));
         return;
       }
-      console.log("singleResult", singleResult);
+      // console.log("singleResult", singleResult);
       dbo
         .collection("contents")
-        .find({ letter: req.body.searchInput.charAt(0) })
+        .find({})
         .toArray((err, multipleResults) => {
           if (err) {
             console.log("error", err);
@@ -184,13 +227,15 @@ app.post("/search-word", upload.none(), (req, res) => {
 
           let result = multipleResults.filter(elem => {
             if (
-              elem.english_word
+              elem.french_word
                 .toLowerCase()
-                .includes(req.body.searchInput.toLowerCase())
+                .startsWith(req.body.searchInput.toLowerCase())
+              // .includes(req.body.searchInput.toLowerCase())
             ) {
-              return elem.english_word;
+              return elem.french_word;
             }
           });
+          // console.log("result", result);
           res.send(
             JSON.stringify(result.slice(startWord * 3, startWord * 3 + 3))
           );
@@ -220,6 +265,24 @@ app.post("/new-word", upload.none(), (req, res) => {
       res.send(JSON.stringify({ success: true }));
     }
   );
+});
+
+//upload dictionary
+app.post("/upload-dico", upload.none(), (req, res) => {
+  console.log("req.body", req.body);
+
+  for (let i = 0; i < req.body.englishWord.length; i++) {
+    english_word = req.body.englishWord[i];
+
+    console.log("english_word", english_word);
+    dbo.collection("contents").insertOne({
+      letter: english_word.charAt(0).toLowerCase(),
+      english_word: req.body.englishWord[i],
+      french_word: req.body.frenchWord[i],
+      arabic_word: req.body.arabicWord[i],
+      arabic_definition: req.body.arabicDefinition[i]
+    });
+  }
 });
 
 // new-post

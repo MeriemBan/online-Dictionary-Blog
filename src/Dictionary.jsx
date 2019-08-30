@@ -6,59 +6,93 @@ import { connect } from "react-redux";
 class UnconnectedDictionary extends Component {
   constructor(props) {
     super(props);
-    this.state = { enteredWord: "", page: 0 };
+    this.state = {
+      enteredWord: "",
+      page: 0,
+      searchResult: [],
+      defaultLanguage: "english"
+    };
   }
-  // search for exact value, to be modified
+
+  onTagsChange = event => {
+    event.preventDefault();
+    let defaultLanguage = event.target.value;
+    this.setState({ defaultLanguage }, () => {
+      console.log("this.state.defaultLanguage", this.state.defaultLanguage);
+    });
+  };
+
   handleSearchChange = async event => {
     event.preventDefault();
-    this.setState({
-      enteredWord: event.target.value
-    });
     console.log("event.target.value", event.target.value);
-    let data = new FormData();
-    data.append("searchInput", event.target.value);
-    data.append("page", this.state.page);
-    let response = await fetch("/search-word", { method: "POST", body: data });
-    let responseBody = await response.text();
+    this.setState(
+      {
+        ...this.state,
+        enteredWord: event.target.value
+      },
+      async () => {
+        let data = new FormData();
+        data.append("language", this.state.defaultLanguage);
+        data.append("searchInput", this.state.enteredWord);
+        data.append("page", this.state.page);
+        let response = await fetch("/search-word", {
+          method: "POST",
+          body: data
+        });
+        let responseBody = await response.text();
 
-    let parsed = JSON.parse(responseBody);
-    console.log("parsed", parsed);
-    this.props.dispatch({
-      type: "search-result",
-      searchResult: parsed
-    });
-    // this.setState({ ...this.state, searchResult: "" });
+        let parsed = JSON.parse(responseBody);
+        console.log("parsed", parsed);
+
+        this.setState({ searchResult: parsed });
+      }
+    );
   };
   moreResults = async () => {
-    this.setState({ ...this.state, page: (this.state.page += 1) });
-    let data = new FormData();
-    data.append("searchInput", this.state.enteredWord);
-    data.append("page", this.state.page);
-    let response = await fetch("/search-word", { method: "POST", body: data });
-    let responseBody = await response.text();
+    event.preventDefault();
+    this.setState({ ...this.state, page: (this.state.page += 1) }, async () => {
+      let data = new FormData();
+      data.append("language", this.state.defaultLanguage);
+      data.append("searchInput", this.state.enteredWord);
+      data.append("page", this.state.page);
+      let response = await fetch("/search-word", {
+        method: "POST",
+        body: data
+      });
+      let responseBody = await response.text();
 
-    let parsed = JSON.parse(responseBody);
-    console.log("parsed", parsed);
-    this.props.dispatch({ type: "search-result", searchResult: parsed });
-    // this.setState({ ...this.state, searchResult: "" });
+      let parsed = JSON.parse(responseBody);
+      // console.log("parsed", parsed);
+      this.setState({ searchResult: parsed });
+    });
+
+    console.log("this.state.searchResult", this.state.searchResult);
   };
   lessResults = async () => {
-    this.setState({ ...this.state, page: (this.state.page -= 1) });
-    let data = new FormData();
-    data.append("searchInput", this.state.enteredWord);
-    data.append("page", this.state.page);
-    let response = await fetch("/search-word", { method: "POST", body: data });
-    let responseBody = await response.text();
+    event.preventDefault();
+    console.log("this.state.page", this.state.page);
+    this.setState({ ...this.state, page: (this.state.page -= 1) }, async () => {
+      // console.log("this.state.page", this.state.page);
+      let data = new FormData();
+      data.append("language", this.state.defaultLanguage);
+      data.append("searchInput", this.state.enteredWord);
+      data.append("page", this.state.page);
+      let response = await fetch("/search-word", {
+        method: "POST",
+        body: data
+      });
+      let responseBody = await response.text();
 
-    let parsed = JSON.parse(responseBody);
-    console.log("parsed", parsed);
-    this.props.dispatch({ type: "search-result", searchResult: parsed });
+      let parsed = JSON.parse(responseBody);
+      // console.log("parsed", parsed);
+      this.setState({ searchResult: parsed });
+    });
   };
 
   render = () => {
-    console.log("this.props.username", this.props.username);
-    console.log("this.props.searchResult", this.props.searchResult);
-
+    // console.log("this.props.username", this.props.username);
+    console.log("this.state.searchResult", this.state.searchResult);
+    let results = this.state.searchResult.slice(0, 2);
     return (
       <div>
         <h2> Explore our library of over than 1000 words! </h2>
@@ -66,63 +100,85 @@ class UnconnectedDictionary extends Component {
           <input
             type="text"
             placeholder="search dictionary"
+            value={this.state.enteredWord}
             onChange={this.handleSearchChange}
           />
+
+          <select name="post" size="2" onClick={this.onTagsChange}>
+            <option value="english">English</option>
+            <option value="french">French</option>
+          </select>
+
+          <br />
+          {/* <br /> */}
+          <div>
+            {console.log("this.state.page", this.state.page)}
+            {this.state.page > 0 && this.state.enteredWord !== "" ? (
+              <button onClick={this.lessResults}> {"<back"}</button>
+            ) : null}
+            {this.state.searchResult.length > 2 &&
+            this.state.enteredWord !== "" ? (
+              <button onClick={this.moreResults}>{"next>"}</button>
+            ) : null}
+          </div>
         </form>
         <br />
 
-        {this.props.searchResult
-          ? this.props.searchResult.map(result => {
+        {this.state.enteredWord !== ""
+          ? results.map(result => {
               return (
                 <div>
                   <div
                     style={{
-                      display: "flex",
                       justifyContent: "space-between",
-                      border: "solid 1px",
-                      padding: "20px"
+                      borderBottom: "dotted 1px #CCC",
+                      padding: "20px",
+                      marginLeft: "40px",
+                      marginRight: "40px"
                     }}
                   >
-                    <div>
-                      <h4>English </h4>
-                      <span>{result.english_word}</span>
-                    </div>
-                    <br />
-                    <div>
-                      <h4>French</h4>
-                      <span>{result.french_word}</span>
-                    </div>
-                    <br />
+                    {this.state.defaultLanguage === "english" ? (
+                      <div>
+                        <div>
+                          <h4>English </h4>
+                          <span>{result.english_word}</span>
+                        </div>
+                        <br />
+                        <div>
+                          <h4>French</h4>
+                          <span>{result.french_word}</span>
+                        </div>
+                        <br />
+                      </div>
+                    ) : (
+                      <div>
+                        <div>
+                          <h4>French</h4>
+                          <span>{result.french_word}</span>
+                        </div>
+                        <br />
+                        <div>
+                          <h4>English </h4>
+                          <span>{result.english_word}</span>
+                        </div>
+                        <br />
+                      </div>
+                    )}
+
                     <div>
                       <h4>Arabic</h4>
                       <span>{result.arabic_word}</span>
+                      <br />
                       <br />
                       <em>{result.arabic_definition}</em>
                     </div>
                     <br />
                   </div>
-                  {/* <div
-                    style={
-                      this.props.searchResult.length > 1
-                        ? { display: "block" }
-                        : { display: "none" }
-                    }
-                  >
-                    <br /> -o- <br />
-                  </div> */}
+                  <br />
                 </div>
               );
             })
           : null}
-
-        <div>
-          {this.state.page > 0 ? (
-            <button onClick={this.lessResults}> {"<back"}</button>
-          ) : null}
-          {this.props.searchResult.length >= 3 ? (
-            <button onClick={this.moreResults}>{"next>"}</button>
-          ) : null}
-        </div>
       </div>
     );
   };
@@ -130,7 +186,6 @@ class UnconnectedDictionary extends Component {
 
 let mapStateToProps = state => {
   return {
-    searchResult: state.searchResult,
     username: state.username
   };
 };
