@@ -33,21 +33,40 @@ class UnconnectedBlog extends Component {
             ? this.props.blogs.map(blogPost => {
                 return (
                   <div>
-                    <h2>{blogPost.title}</h2>
+                    {blogPost.image === null ? (
+                      <Link to={"/blog/" + blogPost._id}>
+                        <h2>{blogPost.title}</h2>
+                      </Link>
+                    ) : (
+                      <h2>{blogPost.title}</h2>
+                    )}
+
                     <h3>{blogPost.author}</h3>
                     <h4>{blogPost.date}</h4>
-                    <div>
-                      Tags:{" "}
-                      {blogPost.tags !== null
-                        ? blogPost.tags.split(",").join(" - ")
-                        : null}
+                    <div
+                      style={{
+                        display: blogPost.tags !== undefined ? "block" : "none"
+                      }}
+                    >
+                      Tags: {blogPost.tags.split(",").join(" - ")}
                     </div>
-                    <Link to={"/blog/" + blogPost._id}>
+                    {console.log("blogPost.like", blogPost.like)}
+                    <div
+                      style={{
+                        display: blogPost.likes !== undefined ? "block" : "none"
+                      }}
+                    >
+                      {blogPost.likes > 1
+                        ? blogPost.likes + " likes"
+                        : blogPost.likes + " like"}
+                    </div>
+                    <div
+                      style={{
+                        display: blogPost.image !== null ? "block" : "none"
+                      }}
+                    >
                       <img src={blogPost.image} className="blogimg" />
-                    </Link>
-
-                    {/* <div>{blogPost.likes + " likes"}</div> */}
-                    {/* {add like button}*/}
+                    </div>
                   </div>
                 );
               })

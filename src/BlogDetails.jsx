@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { PassThrough } from "stream";
 // import css file
 
 class UnconnectedBlogDetails extends Component {
   constructor(props) {
     super(props);
-    this.state = { blogs: [], review: "", username: "" };
+    this.state = { blogs: [], review: "", username: "", likes: 0 };
   }
   // component did mount?
   // likes
@@ -29,6 +30,29 @@ class UnconnectedBlogDetails extends Component {
     }
   };
 
+  likeIt = async () => {
+    event.preventDefault();
+    let data = new FormData();
+    this.setState({}, async () => {
+      data.append("likes", 1);
+      data.append("postId", this.props.id);
+      let response = await fetch("/likes", {
+        method: "POST",
+        body: data,
+        credentials: "include"
+      });
+      let responseBody = await response.text();
+      let body = JSON.parse(responseBody);
+      if (body.success) {
+        this.props.dispatch({
+          type: "increase-likes",
+          postId: this.props.id,
+          likes: (this.state.likes += 1)
+        });
+        return;
+      }
+    });
+  };
   onReviewChange = event => {
     event.preventDefault();
     this.setState({ ...this.state, review: event.target.value });
@@ -55,16 +79,39 @@ class UnconnectedBlogDetails extends Component {
                 <h2>{blogPost.title}</h2>
                 <h3>{blogPost.author}</h3>
                 <h4>{blogPost.date}</h4>
-                <img width="810" height="562" src={blogPost.image} />
-                <div>{blogPost.post}</div>
-                <div>
-                  Tags:{" "}
-                  {blogPost.tags !== null
-                    ? blogPost.tags.split(",").join(" - ")
-                    : null}
+                {console.log("blogPost.image", blogPost.image)}
+                <div
+                  style={{
+                    display: blogPost.image !== null ? "block" : "none"
+                  }}
+                >
+                  <img
+                    width="810"
+                    height="562"
+                    src={blogPost.image}
+                    className="blogimg"
+                  />
                 </div>
-                {/* <div>{blogPost.likes + " likes"}</div> */}
-
+                <div>{blogPost.post}</div>
+                <div
+                  style={{
+                    display: blogPost.tags !== undefined ? "block" : "none"
+                  }}
+                >
+                  Tags: {blogPost.tags.split(",").join(" - ")}
+                </div>
+                {console.log("blogPost.likes", blogPost.likes)}
+                <div
+                  style={{
+                    display: blogPost.likes !== undefined ? "block" : "none"
+                  }}
+                >
+                  {blogPost.likes > 1
+                    ? blogPost.likes + " likes"
+                    : blogPost.likes + " like"}
+                </div>
+                <br />
+                <button onClick={this.likeIt}>Like it!</button>
                 <h2>Reviews</h2>
                 <div>
                   express yourself!
@@ -102,7 +149,8 @@ class UnconnectedBlogDetails extends Component {
 let mapStateToProps = state => {
   return {
     blogs: state.blogs,
-    username: state.username
+    username: state.username,
+    likes: state.likes
   };
 };
 

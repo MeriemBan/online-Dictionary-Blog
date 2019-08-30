@@ -66,6 +66,14 @@ class UnconnectedNewWord extends Component {
     alert("Oops! a problem occured, please try again");
   };
 
+  deleteContent = async () => {
+    event.preventDefault();
+    let response = await fetch("/delete-dico", {
+      method: "POST"
+    });
+    let responseBody = await response.text();
+  };
+
   englishWordChange = event => {
     this.setState({
       english_word: event.target.value
@@ -123,6 +131,7 @@ class UnconnectedNewWord extends Component {
           {" "}
           {/* only admin */}
           <button onClick={this.upload}>upload dictionary</button>
+          <button onClick={this.deleteContent}>delete dictionary</button>
         </div>
       </div>
     );

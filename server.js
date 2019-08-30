@@ -155,6 +155,17 @@ app.post("/logout", upload.none(), (req, res) => {
   console.log("sessions", sessions);
 });
 
+app.post("/delete-dico", (req, res) => {
+  dbo.collection("contents").deleteMany({}, (err, result) => {
+    if (err) {
+      console.log("error", err);
+      res.send("fail");
+      return;
+    }
+    res.send(JSON.stringify({ success: true }));
+  });
+});
+
 // search-word
 app.post("/search-word", upload.none(), (req, res) => {
   console.log("searchInput", req.body.searchInput);
@@ -289,8 +300,7 @@ app.post("/upload-dico", upload.none(), (req, res) => {
 app.post("/new-post", upload.single("file"), (req, res) => {
   console.log("/new-post endpoint");
   console.log("request to /new-post body", req.body);
-  let sessionId = req.cookies.sid;
-  let username = sessions[sessionId];
+  
   let time = new Date();
   let formattedTime = time.toLocaleString(undefined, {
     year: "2-digit",
@@ -298,7 +308,7 @@ app.post("/new-post", upload.single("file"), (req, res) => {
     day: "2-digit"
   });
   console.log("req.body.tags", req.body.tags);
-  console.log("req.file.filename", req.file.filename);
+
   let filePath;
 
   if (req.file !== undefined) {
@@ -309,7 +319,7 @@ app.post("/new-post", upload.single("file"), (req, res) => {
   dbo.collection("blog").insertOne(
     {
       title: req.body.title,
-      author: username,
+      author: req.body.author,
       date: formattedTime,
       image: filePath,
       post: req.body.post,
@@ -328,13 +338,13 @@ app.post("/new-post", upload.single("file"), (req, res) => {
 });
 
 // like
-app.post("/like", upload.none(), (req, res) => {
+app.post("/likes", upload.none(), (req, res) => {
   console.log("req.body", req.body);
 
-  let numberOfLikes = parseInt(req.body.like);
+  let numberOfLikes = parseInt(req.body.likes);
 
   dbo.collection("blog").updateOne(
-    { _id: ObjectID(req.body.blogPostId) },
+    { _id: ObjectID(req.body.postId) },
     {
       $inc: {
         likes: numberOfLikes
@@ -346,6 +356,7 @@ app.post("/like", upload.none(), (req, res) => {
         res.send("fail");
         return;
       }
+
       res.send(JSON.stringify({ success: true }));
       return;
     }

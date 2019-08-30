@@ -32,6 +32,9 @@ let reducer = (state, action) => {
   if (action.type === "display-posts") {
     return { ...state, blogs: action.blogs };
   }
+  if (action.type === "increase-likes") {
+    return { ...state, postId: action.postId, likes: action.likes };
+  }
 
   return state;
 };
@@ -43,7 +46,9 @@ const store = createStore(
     signedIn: false,
     username: "",
     blogs: [],
-    searchResult: []
+    // searchResult: [],
+    likes: 0,
+    postId: ""
   },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );

@@ -6,7 +6,14 @@ import { connect } from "react-redux";
 class UnconnectedNewPost extends Component {
   constructor(props) {
     super(props);
-    this.state = { title: "", post: "", image: {}, tags: [], username: "" };
+    this.state = {
+      title: "",
+      post: "",
+      image: {},
+      tags: [],
+      username: "",
+      authorName: ""
+    };
   }
 
   onTitleChange = event => {
@@ -37,11 +44,17 @@ class UnconnectedNewPost extends Component {
       console.log("this.state.tags", this.state.tags);
     });
   };
+  onAuthorNameChange = event => {
+    event.preventDefault();
+    this.setState({ authorName: event.target.value });
+  };
 
   handleSubmitPost = async () => {
     event.preventDefault();
     console.log("this.state.tags", this.state.tags);
     let data = new FormData();
+    console.log("this.state.image", this.state.image);
+    data.append("author", this.state.authorName);
     data.append("file", this.state.image);
     data.append("title", this.state.title);
     data.append("post", this.state.post);
@@ -61,6 +74,14 @@ class UnconnectedNewPost extends Component {
       <div>
         Add a new post here
         <form onSubmit={this.handleSubmitPost}>
+          <div>
+            <input
+              type="text"
+              placeholder="First Name & Last Name"
+              value={this.state.Name}
+              onChange={this.onAuthorNameChange}
+            />
+          </div>
           <div>
             <input
               type="text"
