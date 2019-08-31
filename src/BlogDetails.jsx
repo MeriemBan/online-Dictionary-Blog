@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { PassThrough } from "stream";
 // import css file
+import "./style/Blog_details.css";
 
 class UnconnectedBlogDetails extends Component {
   constructor(props) {
@@ -71,8 +72,9 @@ class UnconnectedBlogDetails extends Component {
           {/* {admin only} */}
           <Link to="/newPost">New post</Link>
         </div>
-        Blog post here
-        <div>
+        <h1 >Post</h1>
+
+        <div >
           {displayedPost.map(blogPost => {
             return (
               <div>

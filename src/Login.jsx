@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 // import css file
+import "./style/Signup_Login.css";
 
 class UnconnectedLogin extends Component {
   constructor(props) {

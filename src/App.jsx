@@ -49,6 +49,9 @@ class UnconnectedNavigation extends Component {
       this.props.history.push("/");
     }
   };
+  goBack = () => {
+    this.props.history.goBack();
+  };
   render = () => {
     console.log("this.state.username", this.state.username);
     return (
@@ -56,6 +59,7 @@ class UnconnectedNavigation extends Component {
         <button onClick={this.logout}>
           <NavLink to="/">Log out</NavLink>
         </button>
+        <button onClick={this.goBack}>Back</button>
         <br />
         <NavLink to="/signup">Sign Up</NavLink>
         <br />

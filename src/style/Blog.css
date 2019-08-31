@@ -1,0 +1,176 @@
+.posts-global-box {
+  padding: 40px;
+  margin: 40px;
+  float: left;
+  width: 100%;
+  /* border: 1px solid pink; */
+  display: block;
+  background-color: transparent;
+}
+
+.main-box {
+  padding: 20px;
+  margin: 20px;
+  float: left;
+  width: 60%;
+  /* border: 1px solid grey; */
+  align-items: center;
+  display: flex;
+  align-items: space-around;
+  justify-content: center;
+}
+
+.main-box-head {
+  /* border: 1px solid grey; */
+  background-color: transparent;
+  /* color: #232323; */
+  padding: 20px;
+  font-family: "open sans", arial, helvetica, sans-serif;
+  color: #000033;
+  font-size: 25px;
+}
+
+.main-box-inside {
+  /* border: 1px solid red; */
+  width: 100%;
+  float: left;
+}
+#blogimg {
+  width: 275px;
+  height: 195px;
+}
+.image-box {
+  /* border: 1px solid grey; */
+  /* float: left; */
+  margin-right: 20px;
+  display: block;
+}
+.entry-header {
+  /* border: 1px solid blue; */
+  margin: 0 0 5px;
+  padding: 10px 0 0;
+  width: 100%;
+  /* vertical distance between items */
+  line-height: 150%;
+}
+.entry-header-and-image-box {
+  /* border: 1px solid yellow; */
+  display: flex;
+  justify-items: center;
+  width: 100%;
+  background-color: #f8f8ff;
+  margin-bottom: 20px;
+}
+
+a,
+abbr,
+acronym,
+address,
+applet,
+big,
+blockquote,
+body,
+caption,
+cite,
+code,
+dd,
+del,
+dfn,
+div,
+dl,
+dt,
+em,
+fieldset,
+font,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+html,
+iframe,
+ins,
+kbd,
+label,
+legend,
+li,
+object,
+ol,
+p,
+pre,
+q,
+s,
+samp,
+small,
+span,
+strike,
+strong,
+sub,
+sup,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr,
+tt,
+ul,
+var {
+  border: 0;
+  /* font-size: 100%; */
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+.title {
+  border: 0;
+  font-size: 100%;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+  color: #000033;
+}
+.author {
+  border: 0;
+  font-size: 100%;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+  font-weight: 400;
+  font-size: 14px;
+  color: #cf4d35;
+}
+.date,
+.likes {
+  border: 0;
+  font-size: 100%;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+  color: #9b9b9b;
+  font-size: 12px;
+}
+.date-and-likes {
+  /* display: flex;
+  justify-content: space-between; */
+  margin-left: 0;
+  margin-right: 0;
+}
+.tags {
+  border: 0;
+  font-size: 100%;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+  color: #000033;
+  font-size: 14px;
+}

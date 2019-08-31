@@ -42,7 +42,8 @@ let reducer = (state, action) => {
 const store = createStore(
   reducer,
   {
-    loggedIn: false,
+    // loggedIn: false,
+    loggedIn: true,
     signedIn: false,
     username: "",
     blogs: [],

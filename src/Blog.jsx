@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 // import css file
+import "./style/Blog.css";
 
 class UnconnectedBlog extends Component {
   constructor(props) {
@@ -28,49 +29,73 @@ class UnconnectedBlog extends Component {
       <div>
         {/* {admin only} */}
         <Link to="/newPost">New post</Link>
-        <div>
-          {this.props.blogs
-            ? this.props.blogs.map(blogPost => {
-                return (
-                  <div>
-                    {blogPost.image === null ? (
-                      <Link to={"/blog/" + blogPost._id}>
-                        <h2>{blogPost.title}</h2>
-                      </Link>
-                    ) : (
-                      <h2>{blogPost.title}</h2>
-                    )}
+        <div className="posts-global-box">
+          <h1 className="main-box-head">Posts</h1>
+          <div className="main-box">
+            <div className="main-box-inside">
+              {this.props.blogs
+                ? this.props.blogs.map(blogPost => {
+                    return (
+                      <div className="entry-header-and-image-box">
+                        <div
+                          className="image-box"
+                          style={{
+                            display: blogPost.image !== null ? "block" : "none"
+                          }}
+                        >
+                          <Link to={"/blog/" + blogPost._id}>
+                            <img src={blogPost.image} id="blogimg" />
+                          </Link>
+                        </div>
+                        <div className="entry-header">
+                          {blogPost.image === null ? (
+                            <Link to={"/blog/" + blogPost._id}>
+                              <h2>{blogPost.title}</h2>
+                            </Link>
+                          ) : (
+                            <h2 className="title">{blogPost.title}</h2>
+                          )}
 
-                    <h3>{blogPost.author}</h3>
-                    <h4>{blogPost.date}</h4>
-                    <div
-                      style={{
-                        display: blogPost.tags !== undefined ? "block" : "none"
-                      }}
-                    >
-                      Tags: {blogPost.tags.split(",").join(" - ")}
-                    </div>
-                    {console.log("blogPost.like", blogPost.like)}
-                    <div
-                      style={{
-                        display: blogPost.likes !== undefined ? "block" : "none"
-                      }}
-                    >
-                      {blogPost.likes > 1
-                        ? blogPost.likes + " likes"
-                        : blogPost.likes + " like"}
-                    </div>
-                    <div
-                      style={{
-                        display: blogPost.image !== null ? "block" : "none"
-                      }}
-                    >
-                      <img src={blogPost.image} className="blogimg" />
-                    </div>
-                  </div>
-                );
-              })
-            : "Blog empty"}
+                          <div className="author">
+                            <em>{"by "}</em>
+
+                            {blogPost.author}
+                          </div>
+                          <div className="date-and-likes">
+                            <div className="date">{blogPost.date}</div>
+                            <div
+                              className="likes"
+                              style={{
+                                display:
+                                  blogPost.likes !== undefined
+                                    ? "block"
+                                    : "none"
+                              }}
+                            >
+                              <b>
+                                {blogPost.likes > 1
+                                  ? blogPost.likes + " likes"
+                                  : blogPost.likes + " like"}
+                              </b>
+                            </div>
+                          </div>
+                          <div
+                            className="tags"
+                            style={{
+                              display:
+                                blogPost.tags !== undefined ? "block" : "none"
+                            }}
+                          >
+                            <b>Tags:</b> {blogPost.tags.split(",").join(" - ")}
+                          </div>
+                          {console.log("blogPost.like", blogPost.like)}
+                        </div>
+                      </div>
+                    );
+                  })
+                : "Blog empty"}
+            </div>
+          </div>
         </div>
       </div>
     );

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 // import css file
-
+import "./style/Dictionary_search.css";
 class UnconnectedDictionary extends Component {
   constructor(props) {
     super(props);
@@ -50,6 +50,7 @@ class UnconnectedDictionary extends Component {
   };
   moreResults = async () => {
     event.preventDefault();
+    console.log("next page");
     this.setState({ ...this.state, page: (this.state.page += 1) }, async () => {
       let data = new FormData();
       data.append("language", this.state.defaultLanguage);
@@ -95,90 +96,114 @@ class UnconnectedDictionary extends Component {
     let results = this.state.searchResult.slice(0, 2);
     return (
       <div>
-        <h2> Explore our library of over than 1000 words! </h2>
-        <form>
-          <input
-            type="text"
-            placeholder="search dictionary"
-            value={this.state.enteredWord}
-            onChange={this.handleSearchChange}
-          />
-
-          <select name="post" size="2" onClick={this.onTagsChange}>
-            <option value="english">English</option>
-            <option value="french">French</option>
-          </select>
-
-          <br />
-          {/* <br /> */}
-          <div>
-            {console.log("this.state.page", this.state.page)}
-            {this.state.page > 0 && this.state.enteredWord !== "" ? (
-              <button onClick={this.lessResults}> {"<back"}</button>
-            ) : null}
-            {this.state.searchResult.length > 2 &&
-            this.state.enteredWord !== "" ? (
-              <button onClick={this.moreResults}>{"next>"}</button>
-            ) : null}
+        <div className="home-items">
+          <div className="center">
+            <h1>Explore our library of over than 1000 words! </h1>
           </div>
-        </form>
-        <br />
 
-        {this.state.enteredWord !== ""
-          ? results.map(result => {
-              return (
-                <div>
-                  <div
-                    style={{
-                      justifyContent: "space-between",
-                      borderBottom: "dotted 1px #CCC",
-                      padding: "20px",
-                      marginLeft: "40px",
-                      marginRight: "40px"
-                    }}
-                  >
-                    {this.state.defaultLanguage === "english" ? (
-                      <div>
-                        <div>
-                          <h4>English </h4>
-                          <span>{result.english_word}</span>
-                        </div>
-                        <br />
-                        <div>
-                          <h4>French</h4>
-                          <span>{result.french_word}</span>
-                        </div>
-                        <br />
-                      </div>
-                    ) : (
-                      <div>
-                        <div>
-                          <h4>French</h4>
-                          <span>{result.french_word}</span>
-                        </div>
-                        <br />
-                        <div>
-                          <h4>English </h4>
-                          <span>{result.english_word}</span>
-                        </div>
-                        <br />
-                      </div>
-                    )}
+          <div id="search-langChoice-pagination">
+            <form>
+              <input
+                id="search-bar"
+                autoFocus
+                spellCheck="false"
+                autoCapitalize="off"
+                autoComplete="off"
+                autoCorrect="off"
+                type="text"
+                placeholder="search dictionary"
+                value={this.state.enteredWord}
+                onChange={this.handleSearchChange}
+              />
+            </form>
 
-                    <div>
-                      <h4>Arabic</h4>
-                      <span>{result.arabic_word}</span>
+            {/* <div id="lang-options"> */}
+            <select
+              id="lang-options"
+              name="post"
+              size="2"
+              onClick={this.onTagsChange}
+            >
+              <option value="english">English</option>
+              <option value="french">French</option>
+            </select>
+            {/* </div> */}
+
+            <div id="pagination">
+              {console.log("this.state.page", this.state.page)}
+              {this.state.page > 0 && this.state.enteredWord !== "" ? (
+                <button onClick={this.lessResults}>{"<back"}</button>
+              ) : null}
+              {this.state.searchResult.length > 2 &&
+              this.state.enteredWord !== "" ? (
+                <button onClick={this.moreResults}>{"next>"}</button>
+              ) : null}
+              {console.log("this.state.page", this.state.page)}
+            </div>
+          </div>
+          <br />
+        </div>
+        <div className="definitions">
+          {this.state.enteredWord !== ""
+            ? results.map(result => {
+                return (
+                  <div>
+                    <div
+                      style={{
+                        justifyContent: "space-between",
+                        borderBottom: "dotted 1px  #000033",
+                        padding: "20px",
+                        marginLeft: "40px",
+                        marginRight: "40px"
+                      }}
+                    >
+                      {this.state.defaultLanguage === "english" ? (
+                        <div>
+                          <div>
+                            <h4>English </h4>
+                            <span>{result.english_word}</span>
+                          </div>
+                          <br />
+                          <div>
+                            <h4>French</h4>
+                            <span>{result.french_word}</span>
+                          </div>
+                          <br />
+                        </div>
+                      ) : (
+                        <div>
+                          <div>
+                            <h4>French</h4>
+                            <span>{result.french_word}</span>
+                          </div>
+                          <br />
+                          <div>
+                            <h4>English </h4>
+                            <span>{result.english_word}</span>
+                          </div>
+                          <br />
+                        </div>
+                      )}
+
+                      <div>
+                        <h4>Arabic</h4>
+                        <span style={{ textAlign: "right" }}>
+                          {result.arabic_word}
+                        </span>
+                        <br />
+                        <br />
+                        <em style={{ textAlign: "right" }}>
+                          {result.arabic_definition}
+                        </em>
+                      </div>
                       <br />
-                      <br />
-                      <em>{result.arabic_definition}</em>
                     </div>
                     <br />
                   </div>
-                  <br />
-                </div>
-              );
-            })
-          : null}
+                );
+              })
+            : null}
+        </div>
       </div>
     );
   };
