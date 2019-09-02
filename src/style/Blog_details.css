@@ -1,0 +1,125 @@
+.post-global-box {
+  /* border: 1px solid grey; */
+  padding: 20px 40px 40px 40px;
+  margin: 0px 40px 40px 40px;
+  float: left;
+  display: block;
+}
+.header-image-text-footer {
+  background-color: #faf1e7;
+  margin: 0 40px 40px 40px;
+  border-bottom: 2px solid #cf4d35;
+}
+.post-header-box {
+  /* border: 1px solid pink; */
+  line-height: 150%;
+}
+.post-header-and-image {
+  line-height: 180%;
+}
+
+.post-title {
+  border-bottom: 2px solid #cf4d35;
+  font-family: "open sans", arial, helvetica, sans-serif;
+  color: #000033;
+  font-size: 25px;
+  padding: 10px;
+}
+.post-author {
+  color: #cf4d35;
+  padding-top: 10px;
+  padding-left: 40px;
+}
+.post-date {
+  color: #9b9b9b;
+  padding-left: 40px;
+}
+.post-img-box {
+  padding: 20px;
+  text-align: center;
+}
+.post-img-and-text {
+  /* border: 1px solid red; */
+  /* display: flex;
+  align-items: center; */
+  padding: 40px;
+}
+#post-img {
+  width: 300px;
+  height: 300px;
+  /* object-fit: cover; */
+}
+.post-text {
+  /* border: 1px solid red; */
+  padding: 0 20px 20px 0px;
+  /* margin-right: 10px; */
+  text-align: justify;
+  font-size: 20px;
+}
+
+.post-tags-and-likes {
+  display: block;
+  padding-left: 40px;
+}
+.post-tags {
+  color: #000033;
+}
+.post-likes {
+  color: #000033;
+}
+
+.post-reviews-box {
+  margin: 0 40px 40px 40px;
+  padding-top: 30px;
+  /* border-top: 2px solid #000033; */
+  line-height: 200%;
+}
+
+.post-reviews-title {
+  /* border-bottom: 2px solid #000033; */
+  color: #000033;
+}
+
+.post-reviews-message {
+  margin-left: 20px;
+}
+.reviews-title-and-message {
+  /* border: 1px solid brown; */
+  margin-left: 10px;
+  border-bottom: 1px dotted #000033;
+}
+.review-input-and-submit {
+  /* border: 1px solid purple; */
+  margin-left: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.review-input {
+  /* border: solid 1px brown; */
+  /* width: 750px; */
+
+  height: 50px;
+  font-size: 14px;
+  border-radius: 10px;
+  border: 2px solid #cf4d35;
+
+  /* display: inline-block;*/
+  width: 200%;
+  /* text-align: start;
+  vertical-align: top; */
+}
+
+.review-submit {
+  border: solid 1px #faf1e7;
+  border-radius: 10px;
+  /* background-color: #f8f8ff; */
+  background-color: #000033;
+  color: #faf1e7;
+  font-size: 18px;
+  justify-content: right;
+}
+
+#post-like-btn {
+  font-size: 14px;
+}

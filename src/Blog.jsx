@@ -22,79 +22,84 @@ class UnconnectedBlog extends Component {
     };
     setInterval(updatePosts, 1000);
   };
+  goBack = () => {
+    this.props.history.goBack();
+  };
 
   // add pagination
   render = () => {
     return (
       <div>
-        {/* {admin only} */}
-        <Link to="/newPost">New post</Link>
         <div className="posts-global-box">
-          <h1 className="main-box-head">Posts</h1>
-          <div className="main-box">
-            <div className="main-box-inside">
-              {this.props.blogs
-                ? this.props.blogs.map(blogPost => {
-                    return (
-                      <div className="entry-header-and-image-box">
-                        <div
-                          className="image-box"
-                          style={{
-                            display: blogPost.image !== null ? "block" : "none"
-                          }}
-                        >
+          <div className="Nav-back">
+            <button id="Nav-back-btn" onClick={this.goBack}>
+              back
+            </button>
+          </div>
+          <div className="main-box-head">
+            <h1>Posts</h1>
+          </div>
+          <div className="main-box-inside">
+            {this.props.blogs
+              ? this.props.blogs.map(blogPost => {
+                  return (
+                    <div className="entry-header-and-image-box">
+                      <div
+                        className="image-box"
+                        style={{
+                          display: blogPost.image !== null ? "block" : "none"
+                        }}
+                      >
+                        <Link to={"/blog/" + blogPost._id}>
+                          <img src={blogPost.image} id="blogimg" />
+                        </Link>
+                      </div>
+                      <div className="entry-header">
+                        {blogPost.image === null ? (
                           <Link to={"/blog/" + blogPost._id}>
-                            <img src={blogPost.image} id="blogimg" />
+                            <h2>{blogPost.title}</h2>
                           </Link>
-                        </div>
-                        <div className="entry-header">
-                          {blogPost.image === null ? (
-                            <Link to={"/blog/" + blogPost._id}>
-                              <h2>{blogPost.title}</h2>
-                            </Link>
-                          ) : (
-                            <h2 className="title">{blogPost.title}</h2>
-                          )}
+                        ) : (
+                          <h2 className="title">{blogPost.title}</h2>
+                        )}
 
-                          <div className="author">
-                            <em>{"by "}</em>
+                        <h3 className="author">
+                          <em>{"Written by "}</em>
+                          <b id="blog-author"> {blogPost.author}</b>
+                        </h3>
 
-                            {blogPost.author}
-                          </div>
-                          <div className="date-and-likes">
-                            <div className="date">{blogPost.date}</div>
-                            <div
-                              className="likes"
-                              style={{
-                                display:
-                                  blogPost.likes !== undefined
-                                    ? "block"
-                                    : "none"
-                              }}
-                            >
-                              <b>
-                                {blogPost.likes > 1
-                                  ? blogPost.likes + " likes"
-                                  : blogPost.likes + " like"}
-                              </b>
-                            </div>
-                          </div>
+                        <div className="date-and-likes">
+                          <h4 className="date">{blogPost.date}</h4>
                           <div
-                            className="tags"
+                            className="likes"
                             style={{
                               display:
-                                blogPost.tags !== undefined ? "block" : "none"
+                                blogPost.likes !== undefined ? "block" : "none"
                             }}
                           >
-                            <b>Tags:</b> {blogPost.tags.split(",").join(" - ")}
+                            <b>
+                              {blogPost.likes > 1
+                                ? blogPost.likes + " likes"
+                                : blogPost.likes + " like"}
+                            </b>
                           </div>
-                          {console.log("blogPost.like", blogPost.like)}
                         </div>
+
+                        <h3
+                          className="tags"
+                          style={{
+                            display:
+                              blogPost.tags !== undefined ? "block" : "none"
+                          }}
+                        >
+                          {"#" + blogPost.tags.split(",").join("   #")}
+                        </h3>
+                        {console.log("blogPost.like", blogPost.like)}
                       </div>
-                    );
-                  })
-                : "Blog empty"}
-            </div>
+                    </div>
+                  );
+                })
+              : "Blog empty"}
           </div>
         </div>
       </div>

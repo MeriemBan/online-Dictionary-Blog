@@ -16,14 +16,15 @@ import BlogDetails from "./BlogDetails.jsx";
 import NewWord from "./NewWord.jsx";
 import NewPost from "./NewPost.jsx";
 import "./main.css";
+import "./style/NavBar.css";
 
 class UnconnectedNavigation extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: ""
-      //   ,
-      //   color: "#101010"
+      // ,
+      // color: "#101010"
     };
   }
   // listenScrollEvent = e => {
@@ -55,21 +56,40 @@ class UnconnectedNavigation extends Component {
   render = () => {
     console.log("this.state.username", this.state.username);
     return (
-      <nav>
-        <button onClick={this.logout}>
-          <NavLink to="/">Log out</NavLink>
-        </button>
-        <button onClick={this.goBack}>Back</button>
-        <br />
-        <NavLink to="/signup">Sign Up</NavLink>
-        <br />
-        <NavLink to="/dictionary">Dictionary/Home</NavLink>
-        <br />
-        <NavLink to="/newWord">New word</NavLink>
-        <br />
-        <NavLink to="/blog">Blog</NavLink>
-        <br />
-      </nav>
+      <div className="Nav-box">
+        {/* <nav> */}
+        <div className="Nav-dico">
+          <NavLink to="/dictionary">Dictionary</NavLink>
+        </div>
+        <div className="Nav-blog">
+          <NavLink to="/blog">Blog</NavLink>
+        </div>
+        <div className="Nav-new-post">
+          <NavLink to="/newPost">Create a blog post</NavLink>
+        </div>
+        <div className="Nav-new-word">
+          <NavLink to="/newWord">New words</NavLink>
+        </div>
+        <div className="Nav-logout">
+          {/* <button onClick={this.logout}> */}
+          <NavLink onClick={this.logout} to="/">
+            Log out
+          </NavLink>
+          {/* </button> */}
+        </div>
+        {/* <div>
+          {this.props.username ? (
+            <div>{"hi " + this.props.username}</div>
+          ) : null}{" "}
+        </div> */}
+        <div className="Nav-signup">
+          <NavLink to="/signup">Sign Up</NavLink>
+        </div>
+        {/* </nav> */}
+        <div className="footer">
+          <div>Information Science dictionary</div>
+        </div>
+      </div>
     );
   };
 }
@@ -89,19 +109,16 @@ class UnconnectedApp extends Component {
   render = () => {
     return (
       <div>
-        <br />
-        {this.props.username ? <div>{"hi " + this.props.username}</div> : null}
+        {/* {this.props.username ? <div>{"hi " + this.props.username}</div> : null} */}
 
         <Router>
           <Navigation />
-          <br />
-          <Route exact={true} path="/signup" component={Signup} />
-          <Route exact={true} path="/" component={Login} />
-          {/* <Route exact={true} path="/dictionary" component={Dictionary} /> */}
-          {/* <Route exact={true} path="/blog" component={Blog} /> */}
-          {/* <Route exact={true} path="/newWord" component={NewWord} /> */}
+          <div>
+            <Route exact={true} path="/signup" component={Signup} />
+            <Route exact={true} path="/" component={Login} />
+          </div>
+
           <Route exact={true} path="/newPost" component={NewPost} />
-          {/* <Route exact={true} path="/blog/:id" render={renderBlogPosts} /> */}
           {this.props.loggedIn ? (
             <Route exact={true} path="/dictionary" component={Dictionary} />
           ) : (
@@ -120,15 +137,7 @@ class UnconnectedApp extends Component {
               }}
             />
           )}
-          {/* {this.props.loggedIn ? (
-            <Route exact={true} path="/newPost" component={NewPost} />
-          ) : (
-            <Redirect
-              to={{
-                pathname: "/"
-              }}
-            />
-          )} */}
+
           {this.props.loggedIn ? (
             <Route exact={true} path="/blog" component={Blog} />
           ) : (
@@ -156,7 +165,8 @@ class UnconnectedApp extends Component {
 let mapStateToProps = state => {
   return {
     username: state.username,
-    loggedIn: state.loggedIn
+    loggedIn: state.loggedIn,
+    signedIn: state.signedIn
   };
 };
 

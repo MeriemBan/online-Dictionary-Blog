@@ -1,65 +1,73 @@
 .posts-global-box {
-  padding: 40px;
-  margin: 40px;
-  float: left;
-  width: 100%;
-  /* border: 1px solid pink; */
+  /* border: 1px solid red; */
+  padding: 20px 40px 40px 40px;
+  margin: 0px 40px 40px 40px;
+  /* float: left; */
+  float: center;
   display: block;
   background-color: transparent;
-}
-
-.main-box {
-  padding: 20px;
-  margin: 20px;
-  float: left;
-  width: 60%;
-  /* border: 1px solid grey; */
   align-items: center;
-  display: flex;
-  align-items: space-around;
   justify-content: center;
 }
 
 .main-box-head {
-  /* border: 1px solid grey; */
+  /* border: 1px solid blue; */
   background-color: transparent;
+  /* background-image: url("/images/colored_background.jpeg"); */
   /* color: #232323; */
   padding: 20px;
   font-family: "open sans", arial, helvetica, sans-serif;
   color: #000033;
   font-size: 25px;
+  text-align: center;
+  justify-content: center;
+}
+.main-box-inside {
+  /* border: 1px solid purple; */
+  padding: 0px 40px 40px 40px;
+  margin: 0px 40px 40px 40px;
+  width: 80%;
+  float: center;
+  align-items: center;
+  justify-content: center;
+  /* display: block; */
 }
 
-.main-box-inside {
-  /* border: 1px solid red; */
-  width: 100%;
-  float: left;
-}
 #blogimg {
   width: 275px;
   height: 195px;
+  opacity: 0.6;
+  transition: 0.3s;
 }
+
+#blogimg:hover {
+  opacity: 1;
+}
+
 .image-box {
   /* border: 1px solid grey; */
   /* float: left; */
   margin-right: 20px;
+  padding: 10px;
   display: block;
 }
 .entry-header {
   /* border: 1px solid blue; */
   margin: 0 0 5px;
-  padding: 10px 0 0;
+  padding: 20px;
   width: 100%;
   /* vertical distance between items */
   line-height: 150%;
 }
 .entry-header-and-image-box {
-  /* border: 1px solid yellow; */
+  border: 2px solid #000033;
   display: flex;
   justify-items: center;
   width: 100%;
-  background-color: #f8f8ff;
-  margin-bottom: 20px;
+  background-color: #faf1e7;
+  margin-bottom: 30px;
+  padding: 5px;
+  border-radius: 20px;
 }
 
 a,
@@ -128,8 +136,9 @@ var {
 }
 
 .title {
-  border: 0;
-  font-size: 100%;
+  border-bottom: 2px solid #cf4d35;
+  /* border: 0; */
+  font-size: 135%;
   margin: 0;
   outline: 0;
   padding: 0;
@@ -138,8 +147,8 @@ var {
 }
 .author {
   border: 0;
-  font-size: 100%;
-  margin: 0;
+  font-size: 120%;
+  margin: 10px;
   outline: 0;
   padding: 0;
   vertical-align: baseline;
@@ -147,15 +156,24 @@ var {
   font-size: 14px;
   color: #cf4d35;
 }
-.date,
-.likes {
+.date {
   border: 0;
-  font-size: 100%;
+  font-size: 135%;
   margin: 0;
   outline: 0;
   padding: 0;
   vertical-align: baseline;
   color: #9b9b9b;
+  font-size: 12px;
+}
+.likes {
+  border: 0;
+  font-size: 200%;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+  color: #000033;
   font-size: 12px;
 }
 .date-and-likes {
@@ -173,4 +191,7 @@ var {
   vertical-align: baseline;
   color: #000033;
   font-size: 14px;
+}
+#blog-author {
+  color: #cf4d35;
 }

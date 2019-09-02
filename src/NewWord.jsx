@@ -68,6 +68,7 @@ class UnconnectedNewWord extends Component {
 
   deleteContent = async () => {
     event.preventDefault();
+    alert("Are you sure? This action can not be undone...");
     let response = await fetch("/delete-dico", {
       method: "POST"
     });
@@ -95,43 +96,53 @@ class UnconnectedNewWord extends Component {
       arabic_definition: event.target.value
     });
   };
+  goBack = () => {
+    this.props.history.goBack();
+  };
 
   render = () => {
     return (
       <div>
-        Add a new word here
-        <form onSubmit={this.submitNewWord}>
-          <input
-            type="text"
-            value={this.state.english_word}
-            onChange={this.englishWordChange}
-            placeholder="english word"
-          />
-          <input
-            type="text"
-            value={this.state.french_word}
-            onChange={this.frenchWordChange}
-            placeholder="french word"
-          />
-          <input
-            type="text"
-            value={this.state.arabic_word}
-            onChange={this.arabicWordChange}
-            placeholder="arabic word"
-          />
-          <input
-            type="text"
-            value={this.state.arabic_definition}
-            onChange={this.arabicDefinitionChange}
-            placeholder="arabic definition"
-          />
-          <input type="submit" value="add to dictionary" />
-        </form>
+        <div className="Nav-back">
+          <button id="Nav-back-btn" onClick={this.goBack}>
+            back
+          </button>
+        </div>
         <div>
-          {" "}
-          {/* only admin */}
-          <button onClick={this.upload}>upload dictionary</button>
-          <button onClick={this.deleteContent}>delete dictionary</button>
+          Upload new words
+          <form onSubmit={this.submitNewWord}>
+            <input
+              type="text"
+              value={this.state.english_word}
+              onChange={this.englishWordChange}
+              placeholder="english word"
+            />
+            <input
+              type="text"
+              value={this.state.french_word}
+              onChange={this.frenchWordChange}
+              placeholder="french word"
+            />
+            <input
+              type="text"
+              value={this.state.arabic_word}
+              onChange={this.arabicWordChange}
+              placeholder="arabic word"
+            />
+            <input
+              type="text"
+              value={this.state.arabic_definition}
+              onChange={this.arabicDefinitionChange}
+              placeholder="arabic definition"
+            />
+            <input type="submit" value="add to dictionary" />
+          </form>
+          <div>
+            {" "}
+            {/* only admin */}
+            <button onClick={this.upload}>upload dictionary</button>
+            <button onClick={this.deleteContent}>delete dictionary</button>
+          </div>
         </div>
       </div>
     );

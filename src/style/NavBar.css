@@ -1,0 +1,108 @@
+.Nav-box {
+  position: relative;
+  top: 0;
+  left: 0;
+  /* border-bottom: 2px solid #000033; */
+  background-color: #000033;
+  height: 50px;
+  max-width: 200%;
+  z-index: 1;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  font-family: "open sans", arial, helvetica, sans-serif;
+}
+
+.Nav-dico {
+  /* position: absolute;
+  top: 0;
+  height: 50px; */
+  color: #faf1e7;
+  /* background-color: #000033; */
+  padding: 15px;
+  transition: 0.3s;
+  text-align: center;
+  text-decoration: none;
+}
+
+.Nav-blog {
+  color: #faf1e7;
+  background-color: #000033;
+  padding: 15px;
+}
+.Nav-new-post {
+  color: #faf1e7;
+  background-color: #000033;
+  padding: 15px;
+}
+.Nav-new-word {
+  color: #faf1e7;
+  background-color: #000033;
+  padding: 15px;
+}
+.Nav-signup {
+  color: #faf1e7;
+  background-color: #000033;
+  padding: 15px;
+}
+.Nav-logout {
+  color: #faf1e7;
+  background-color: #000033;
+  padding: 15px;
+}
+.Nav-back {
+  color: #faf1e7;
+  /* background-color: #000033; */
+  /* padding: 14px; */
+  padding: 13px 13px 13px 7px;
+  /* margin-left: 0; */
+  position: absolute;
+  justify-content: center;
+}
+
+#Nav-back-btn {
+  color: #faf1e7;
+  background-color: #000033;
+  border: 1px solid #faf1e7;
+  text-align: center;
+  font-size: 18px;
+}
+
+.Nav-dico:link,
+.Nav-blog:link,
+.Nav-new-post:link,
+.Nav-new-word:link,
+.Nav-back:link,
+.Nav-signup:link {
+  color: #cf4d35;
+  text-decoration: none;
+}
+.Nav-dico:visited,
+.Nav-blog:visited,
+.Nav-new-post:visited,
+.Nav-back:visited,
+.Nav-new-word:visited,
+.Nav-signup:visited {
+  /* color: #000033; */
+  text-decoration: none;
+}
+.Nav-dico:hover,
+.Nav-blog:hover,
+.Nav-new-post:hover,
+/* .Nav-back:hover, */
+.Nav-new-word:hover,
+.Nav-signup:hover {
+  background-color: #faf1e7;
+  /* color: white; */
+  text-decoration: none;
+  color: #000033;
+}
+a:-webkit-any-link {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  /* text-decoration-color: #000033; */
+}

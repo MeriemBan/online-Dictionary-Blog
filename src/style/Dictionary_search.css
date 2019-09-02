@@ -1,58 +1,76 @@
 h1 {
   font-size: 25px;
 }
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "open sans", arial, helvetica, sans-serif;
-  color: #000033;
-  /* font-size: 25px; */
-  position: relative;
-  top: 0;
-  left: 0;
-  min-height: 100vh;
-  background-image: url("/images/colored_background.jpeg");
-}
+
 .home-items {
-  text-align: center;
+  /* text-align: center; */
+  /* border: 1px solid pink; */
+  padding: 20px 40px 40px 40px;
+  margin: 0 40px 40px 40px;
+  display: block;
+  z-index: 7;
+  float: center;
+  background-color: transparent;
+}
+.dico-header-box {
+  /* border: 1px solid blue; */
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 5%;
+  background-image: url("/images/colored_background.jpeg");
+  opacity: 0.9;
+}
+.dico-search-container {
+  /* border: 1px solid yellow; */
+  /* line-height: 0.5em; */
+  height: 200px;
+  /* line-height: 2%; */
+  float: center;
+  justify-content: center;
+}
+.search-bar-container {
+  border: 1px solid brown;
 }
 
 #search-bar {
   position: absolute;
-  top: 30;
+  /* top: 50; */
   left: 20%;
-  height: 6%;
-  width: 50%;
-  z-index: 1;
+  z-index: 10;
   padding: 2em 2.5%;
   background: 0;
   color: #000033;
   outline: 0;
-  padding-left: 35px;
+  /* padding-left: 35px; */
   font-size: 18px;
   border-radius: 20px;
-  box-sizing: border-box;
-  padding: 4px;
-  border: 2px solid #000033;
+  padding: 10px;
+  /* border: 2px solid #cf4d35; */
   align-items: center;
-  /* display: flex; */
-  /* align-items: flex-start; */
-  margin: 30px;
+  /* margin: 30px; */
   float: right;
   overflow: hidden;
   width: 60%;
-  background-color: #f8f8ff;
-  /* cursor: text; */
+  background-color: #faf1e7;
+  /* -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out; */
 }
-input {
-  color: #000033;
-}
+/* #search-bar:hover {
+  width: 60%;
+} */
 
 .definitions {
-  background-color: #f8f8ff;
-  z-index: 1;
+  /* border: 1px solid red; */
+  /* background-color: #f8f8ff; */
+  padding-top: 10px;
+  background-color: #faf1e7;
+  z-index: 5;
   background-size: cover;
   background-repeat: no-repeat;
+}
+#lang {
+  color: #cf4d35;
 }
 
 option {
@@ -68,12 +86,15 @@ option {
   padding: 0px 15px 1px;
   border-radius: 20px;
   border: #f0f0f0;
-  background-color: #f8f8ff;
+  /* background-color: #f8f8ff; */
+  background-color: #faf1e7;
   font-size: 18px;
   color: #000033;
-  /* display: flex;
-  align-items: flex-start; */
+  display: flex;
+  align-items: flex-start;
+  font-weight: 600;
 }
+
 select {
   /* select french or english */
   /* margin-left: 900px; */
@@ -83,45 +104,67 @@ select {
   background-color: transparent;
 }
 
-.center {
+.dico-title {
+  /* border: 1px solid grey; */
   display: block;
   margin-left: auto;
   margin-right: auto;
+  padding-top: 20px;
   /* width: 50%; */
   /* left: 20%; */
   justify-content: center;
+  text-align: center;
+}
+#search-bar {
+  /* border: 1px solid yellow; */
+  border: 2px solid #000033;
+  /* top: 36.4%; */
+  /* top: 34.4%; */
+  top: 50%;
+  justify-content: center;
 }
 #lang-options {
+  /* border: 1px solid yellow; */
   /* position: absolute;
   top: 30; */
   /* margin-left: 100%; */
-  padding: 4px;
+  padding: 35px;
   float: right;
   margin-left: 5px;
   box-sizing: border-box;
-  line-height: 1.5em;
-  /* left: 20%; */
-  /* width: 60%; */
+  line-height: 0.5em;
   justify-content: center;
 }
-#search-langChoice-pagination {
-  padding: 40px;
-
-  /* border: 1px solid #aaa;
-  background-color: #eee; */
+.search-langChoice-pagination {
+  /* border: 1px solid purple; */
+  padding: 35px;
   align-items: center;
   display: flex;
-  align-items: space-around;
+  /* align-items: space-around; */
   justify-content: center;
   font-size: 14px;
-  /* flex-direction: column; */
+  flex-direction: column;
+  /* line-height: 0.5em; */
+  line-height: 5%;
 }
 
 #pagination {
+  /* border: 1px solid green; */
   align-items: flex-start;
 }
 button {
   border: solid 1px #000033;
   border-radius: 10px;
-  background-color: #f8f8ff;
+  background-color: #faf1e7;
+  /* padding: 5px; */
+  margin: 5px;
+  font-size: 18px;
+}
+
+#pagination-btn {
+  border: solid 1px #faf1e7;
+  border-radius: 10px;
+  background-color: #000033;
+  margin-left: 10px;
+  color: #faf1e7;
 }

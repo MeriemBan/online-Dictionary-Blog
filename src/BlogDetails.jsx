@@ -57,6 +57,10 @@ class UnconnectedBlogDetails extends Component {
   onReviewChange = event => {
     event.preventDefault();
     this.setState({ ...this.state, review: event.target.value });
+    console.log("textareaObject.value", event.target.value);
+  };
+  goBack = () => {
+    this.props.history.goBack();
   };
 
   render = () => {
@@ -66,79 +70,111 @@ class UnconnectedBlogDetails extends Component {
         return blog._id === this.props.id;
       });
     }
+
     return (
       <div>
-        <div>
-          {/* {admin only} */}
-          <Link to="/newPost">New post</Link>
+        <div className="Nav-back">
+          <button id="Nav-back-btn" onClick={this.goBack}>
+            back
+          </button>
         </div>
-        <h1 >Post</h1>
-
-        <div >
+        <div>
           {displayedPost.map(blogPost => {
             return (
-              <div>
-                <h2>{blogPost.title}</h2>
-                <h3>{blogPost.author}</h3>
-                <h4>{blogPost.date}</h4>
-                {console.log("blogPost.image", blogPost.image)}
-                <div
-                  style={{
-                    display: blogPost.image !== null ? "block" : "none"
-                  }}
-                >
-                  <img
-                    width="810"
-                    height="562"
-                    src={blogPost.image}
-                    className="blogimg"
-                  />
+              <div className="post-global-box">
+                <div className="header-image-text-footer">
+                  <div className="post-header-and-image">
+                    <div className="post-header-box">
+                      <h2 className="post-title">{blogPost.title}</h2>
+                      <div className="post-author">
+                        <em>{"Written by "}</em>
+                        {blogPost.author}
+                      </div>
+                      <div className="post-date">{blogPost.date}</div>
+                    </div>
+                    <div className="post-tags-and-likes">
+                      {console.log("blogPost.likes", blogPost.likes)}
+                      <div
+                        className="post-likes"
+                        style={{
+                          display:
+                            blogPost.likes !== undefined ? "block" : "none"
+                        }}
+                      >
+                        {blogPost.likes > 1
+                          ? blogPost.likes + " likes "
+                          : blogPost.likes + " like "}
+                        <button id="post-like-btn" onClick={this.likeIt}>
+                          <b>Like it!</b>
+                        </button>
+                      </div>
+                      <div
+                        className="post-tags"
+                        style={{
+                          display:
+                            blogPost.tags !== undefined ? "block" : "none"
+                        }}
+                      >
+                        {"#" + blogPost.tags.split(",").join("   #")}
+                      </div>
+                    </div>
+                    {console.log("blogPost.image", blogPost.image)}
+                    <div className="post-img-and-text">
+                      <div
+                        className="post-img-box"
+                        style={{
+                          display: blogPost.image !== null ? "block" : "none"
+                        }}
+                      >
+                        <img id="post-img" src={blogPost.image} />
+                      </div>
+                      <p className="post-text">{blogPost.post}</p>
+                    </div>
+                  </div>
                 </div>
-                <div>{blogPost.post}</div>
-                <div
-                  style={{
-                    display: blogPost.tags !== undefined ? "block" : "none"
-                  }}
-                >
-                  Tags: {blogPost.tags.split(",").join(" - ")}
+
+                <div className="post-reviews-box">
+                  <h2 className="post-reviews-title"> Leave a comment</h2>
+                  <div className="review-input-and-submit">
+                    <form onSubmit={this.submitReview}>
+                      <div>
+                        <input
+                          className="review-input"
+                          type="text"
+                          value={this.state.review}
+                          placeholder="express yourself!"
+                          onChange={this.onReviewChange}
+                        />
+                      </div>
+                      <div>
+                        <input
+                          className="review-submit"
+                          type="submit"
+                          value="post"
+                        />
+                      </div>
+                    </form>
+                  </div>
+                  <div>
+                    {blogPost.reviews !== undefined
+                      ? blogPost.reviews.map(review => {
+                          return (
+                            <div className="reviews-title-and-message">
+                              <div className="post-reviews-title">
+                                <em>
+                                  {review.username} - {review.date}:{" "}
+                                </em>
+                              </div>
+                              <div className="post-reviews-message">
+                                {" "}
+                                {review.review_message}
+                              </div>
+                            </div>
+                          );
+                        })
+                      : null}
+                  </div>
                 </div>
-                {console.log("blogPost.likes", blogPost.likes)}
-                <div
-                  style={{
-                    display: blogPost.likes !== undefined ? "block" : "none"
-                  }}
-                >
-                  {blogPost.likes > 1
-                    ? blogPost.likes + " likes"
-                    : blogPost.likes + " like"}
-                </div>
-                <br />
-                <button onClick={this.likeIt}>Like it!</button>
-                <h2>Reviews</h2>
-                <div>
-                  express yourself!
-                  <form onSubmit={this.submitReview}>
-                    <input
-                      type="text"
-                      value={this.state.review}
-                      placeholder="enter a review"
-                      onChange={this.onReviewChange}
-                    />
-                    <input type="submit" value="post" />
-                  </form>
-                </div>
-                {blogPost.reviews !== undefined
-                  ? blogPost.reviews.map(review => {
-                      return (
-                        <ul>
-                          <li>
-                            {review.username} - {review.date}:{" "}
-                            {review.review_message}
-                          </li>
-                        </ul>
-                      );
-                    })
-                  : null}
               </div>
             );
           })}

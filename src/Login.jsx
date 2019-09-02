@@ -49,27 +49,33 @@ class UnconnectedLogin extends Component {
 
   render = () => {
     return (
-      <div>
+      <div className="login-global-box">
         <form onSubmit={this.submitHandler}>
-          <label>Enter your username</label>
-          <input
-            type="text"
-            id="username"
-            placeholder="Your username here"
-            name="username"
-            value={this.state.username}
-            onChange={this.usernameChangeHandler}
-          />
-          <label>Enter your password </label>
-          <input
-            type="text"
-            id="password"
-            placeholder="Your password here"
-            name="password"
-            value={this.state.password}
-            onChange={this.passwordChangeHandler}
-          />
-          <button>Login</button>
+          <div>Enter your username</div>
+          <div>
+            <input
+              type="text"
+              id="username"
+              placeholder="Your username here"
+              name="username"
+              value={this.state.username}
+              onChange={this.usernameChangeHandler}
+            />
+          </div>
+          <div>Enter your password </div>
+          <div>
+            <input
+              type="text"
+              id="password"
+              placeholder="Your password here"
+              name="password"
+              value={this.state.password}
+              onChange={this.passwordChangeHandler}
+            />
+          </div>
+          <div>
+            <button>Login</button>
+          </div>
         </form>
       </div>
     );

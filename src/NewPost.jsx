@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 // import { NavLink } from "react-router-dom";
 // import css file
+import "./style/NewPost.css";
 
 class UnconnectedNewPost extends Component {
   constructor(props) {
@@ -69,49 +70,104 @@ class UnconnectedNewPost extends Component {
     this.setState({ title: "", post: "", image: {}, tags: [] });
     this.props.history.push("/blog");
   };
+  goBack = () => {
+    this.props.history.goBack();
+  };
   render = () => {
     return (
       <div>
-        Add a new post here
-        <form onSubmit={this.handleSubmitPost}>
-          <div>
-            <input
-              type="text"
-              placeholder="First Name & Last Name"
-              value={this.state.Name}
-              onChange={this.onAuthorNameChange}
-            />
+        <div className="newPost-global-box">
+          <div className="Nav-back">
+            <button id="Nav-back-btn" onClick={this.goBack}>
+              back
+            </button>
           </div>
-          <div>
-            <input
-              type="text"
-              placeholder="Title"
-              value={this.state.title}
-              onChange={this.onTitleChange}
-            />
+          <div className="newPost-main-box-head">
+            <h1>Create your blog post</h1>
           </div>
-          <div>
-            <input
-              type="text"
-              placeholder="Body"
-              value={this.state.post}
-              onChange={this.onPostChange}
-            />
+
+          <div className="newPost-main-box-inside">
+            <form onSubmit={this.handleSubmitPost}>
+              <div className="newPost-auhorName-and-input">
+                <h4 id="newPost-label">First Name & Last Name</h4>
+                <input
+                  id="newPost-input"
+                  type="text"
+                  // placeholder="First Name & Last Name"
+                  value={this.state.Name}
+                  onChange={this.onAuthorNameChange}
+                />
+              </div>
+              <div className="newPost-title-and-input">
+                <h4 id="newPost-label">Title</h4>
+                <input
+                  id="newPost-input"
+                  type="text"
+                  // placeholder="Title"
+                  value={this.state.title}
+                  onChange={this.onTitleChange}
+                />
+              </div>
+              <div className="newPost-postBody-and-input">
+                <h4 id="newPost-label">Post body</h4>
+                <input
+                  id="newPost-input-body"
+                  type="text"
+                  // placeholder="Body"
+                  value={this.state.post}
+                  onChange={this.onPostChange}
+                />
+              </div>
+              <div className="newPost-tag-and-select-option">
+                <h4 id="newPost-label">
+                  Tags{" "}
+                  <em>
+                    <h6>(select your tags)</h6>
+                  </em>
+                </h4>
+                <select
+                  id="newPost-select-tags"
+                  name="post"
+                  size="5"
+                  multiple
+                  onChange={this.onTagsChange}
+                >
+                  <option id="newPost-option-tags" value="author">
+                    author
+                  </option>
+                  <option id="newPost-option-tags" value="education">
+                    education
+                  </option>
+                  <option id="newPost-option-tags" value="documentation">
+                    documentation
+                  </option>
+                  <option id="newPost-option-tags" value="archival">
+                    archival
+                  </option>
+                  <option
+                    id="newPost-option-tags"
+                    value="documentation-science"
+                  >
+                    documentation science
+                  </option>
+                </select>
+              </div>
+              <div className="newPost-image-and-chooseFileButton">
+                <h4 id="newPost-label">Post image</h4>
+                <input
+                  id="newPost-input-image"
+                  type="file"
+                  name="file"
+                  onChange={this.onImageChange}
+                />
+                <label id="select-image-button" for="file">
+                  Select your blog image
+                </label>
+              </div>
+              <input id="newPost-btn-post" type="submit" value="post" />
+            </form>
           </div>
-          <div>
-            <select name="post" size="5" multiple onChange={this.onTagsChange}>
-              <option value="author">author</option>
-              <option value="education">education</option>
-              <option value="documentation">documentation</option>
-              <option value="archival">archival</option>
-              <option value="documentation-science">
-                documentation science
-              </option>
-            </select>
-          </div>
-          <input type="file" name="file" onChange={this.onImageChange} />
-          <input type="submit" value="post" />
-        </form>
+        </div>
       </div>
     );
   };
