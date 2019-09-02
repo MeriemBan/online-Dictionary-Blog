@@ -1,0 +1,107 @@
+.newWord-global-box {
+  /* border: 1px solid red; */
+  padding: 20px 40px 40px 40px;
+  margin: 0px 40px 40px 40px;
+  /* float: left; */
+  float: center;
+  display: block;
+  background-color: transparent;
+  align-items: center;
+  justify-content: center;
+}
+.newWord-main-box-head {
+  /* border: 1px solid blue; */
+  background-color: transparent;
+  /* background-image: url("/images/colored_background.jpeg"); */
+  /* color: #232323; */
+  padding: 20px;
+  font-family: "open sans", arial, helvetica, sans-serif;
+  color: #000033;
+  font-size: 25px;
+  text-align: center;
+  justify-content: center;
+}
+.newWord-main-box-inside {
+  /* border: 1px solid purple; */
+  /* border: 2px solid #000033; */
+  /* padding: 15px 40px 40px 40px; */
+  padding: 20px;
+  margin: 0px 40px 40px 40px;
+  float: center;
+  align-items: center;
+  justify-content: center;
+  /* background-color: #faf1e7; */
+  border-radius: 10px;
+  line-height: 1.5em;
+}
+.newWord-upload-options {
+  /* border: 1px solid green; */
+}
+.upload-multiple-words {
+  display: flex;
+}
+#upload-label {
+  color: #cf4d35;
+  font-size: 18px;
+  margin-top: 7px;
+}
+
+.newWord-category {
+  border: 2px solid #faf1e7;
+  background-color: #000033;
+  color: #faf1e7;
+  width: 30%;
+  text-align: left;
+}
+.newWord-category:hover {
+  border: 2px solid #000033;
+  background-color: #faf1e7;
+  color: #000033;
+}
+
+.newWord-form {
+  /* border: 1px solid yellow; */
+  padding: 20px;
+  margin: 0px 40px 40px 40px;
+  border: 2px solid #000033;
+  float: center;
+  align-items: center;
+  justify-content: center;
+  /* background-color: #faf1e7; */
+  border-radius: 10px;
+  line-height: 1.5em;
+}
+#newWord-label {
+  color: #cf4d35;
+  font-size: 18px;
+}
+#newWord-input-arabic {
+  width: 80%;
+  background-color: white;
+  border: 1px solid #faf1e7;
+  justify-content: center;
+  padding-bottom: 10px;
+  text-align: right;
+}
+#newWord-input {
+  width: 80%;
+  background-color: white;
+  border: 1px solid #faf1e7;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+#newWord-input-arabic:hover,
+#newWord-input:hover {
+  background-color: #faf1e7;
+}
+#newWord-single-upload {
+  background-color: #faf1e7;
+  border: 1px solid #000033;
+  font-weight: 100;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+#newWord-single-upload:hover {
+  background-color: #000033;
+  color: #faf1e7;
+}

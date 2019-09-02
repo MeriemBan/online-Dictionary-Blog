@@ -118,6 +118,7 @@
   color: #faf1e7;
   font-size: 18px;
   justify-content: right;
+  cursor: pointer;
 }
 
 #post-like-btn {

@@ -102,6 +102,7 @@ select {
   border-radius: 10px;
   /* background-color: #f8f8ff; */
   background-color: transparent;
+  cursor: pointer;
 }
 
 .dico-title {

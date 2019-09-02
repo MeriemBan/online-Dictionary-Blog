@@ -8,6 +8,7 @@ import {
   arabicDefinitions
 } from "./Data_dictionary.jsx";
 // import css file
+import "./style/NewWord.css";
 
 class UnconnectedNewWord extends Component {
   constructor(props) {
@@ -103,45 +104,80 @@ class UnconnectedNewWord extends Component {
   render = () => {
     return (
       <div>
-        <div className="Nav-back">
-          <button id="Nav-back-btn" onClick={this.goBack}>
-            back
-          </button>
-        </div>
-        <div>
-          Upload new words
-          <form onSubmit={this.submitNewWord}>
-            <input
-              type="text"
-              value={this.state.english_word}
-              onChange={this.englishWordChange}
-              placeholder="english word"
-            />
-            <input
-              type="text"
-              value={this.state.french_word}
-              onChange={this.frenchWordChange}
-              placeholder="french word"
-            />
-            <input
-              type="text"
-              value={this.state.arabic_word}
-              onChange={this.arabicWordChange}
-              placeholder="arabic word"
-            />
-            <input
-              type="text"
-              value={this.state.arabic_definition}
-              onChange={this.arabicDefinitionChange}
-              placeholder="arabic definition"
-            />
-            <input type="submit" value="add to dictionary" />
-          </form>
-          <div>
-            {" "}
-            {/* only admin */}
-            <button onClick={this.upload}>upload dictionary</button>
-            <button onClick={this.deleteContent}>delete dictionary</button>
+        <div className="newWord-global-box">
+          <div className="Nav-back">
+            <button id="Nav-back-btn" onClick={this.goBack}>
+              back
+            </button>
+          </div>
+
+          <div className="newWord-main-box-head">
+            <h1>Upload new words</h1>
+          </div>
+          <div className="newWord-main-box-inside">
+            <div>
+              <button className="newWord-category">Upload a word</button>
+            </div>
+            <form onSubmit={this.submitNewWord}>
+              <div className="newWord-form">
+                <h4 id="newWord-label">English word</h4>
+                <input
+                  id="newWord-input"
+                  type="text"
+                  value={this.state.english_word}
+                  onChange={this.englishWordChange}
+                  // placeholder="english word"
+                />
+                <h4 id="newWord-label">French word</h4>
+                <input
+                  id="newWord-input"
+                  type="text"
+                  value={this.state.french_word}
+                  onChange={this.frenchWordChange}
+                  // placeholder="french word"
+                />
+                <h4 id="newWord-label">Arabic word</h4>
+                <input
+                  id="newWord-input-arabic"
+                  type="text"
+                  value={this.state.arabic_word}
+                  onChange={this.arabicWordChange}
+                  // placeholder="arabic word"
+                />
+                <h4 id="newWord-label">Arabic definition</h4>
+                <input
+                  id="newWord-input-arabic"
+                  type="text"
+                  value={this.state.arabic_definition}
+                  onChange={this.arabicDefinitionChange}
+                  // placeholder="arabic definition"
+                />
+                <div>
+                  <input
+                    id="newWord-single-upload"
+                    type="submit"
+                    value="add to dictionary"
+                  />
+                </div>
+              </div>
+            </form>
+            <div className="newWord-upload-options">
+              <div className="upload-multiple-words">
+                {/* only admin */}
+                <button className="newWord-category" onClick={this.upload}>
+                  Upload multiple words
+                </button>{" "}
+                <h4 id="upload-label"> One click </h4>
+              </div>
+              <div>
+                <button
+                  className="newWord-category"
+                  onClick={this.deleteContent}
+                >
+                  delete dictionary
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
