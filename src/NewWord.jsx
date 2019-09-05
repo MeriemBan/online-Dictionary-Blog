@@ -39,6 +39,7 @@ class UnconnectedNewWord extends Component {
       credentials: "include"
     });
     let responseBody = await response.text();
+    alert("words successfully uploaded!");
   };
 
   // upload a new word
@@ -59,7 +60,7 @@ class UnconnectedNewWord extends Component {
     let body = JSON.parse(responseBody);
     if (body.success) {
       console.log("body success");
-      alert("word successfully added");
+      alert("word successfully uploaded");
       this.props.history.push("/dictionary");
       return;
     }

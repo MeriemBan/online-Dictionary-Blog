@@ -88,7 +88,7 @@
   border: solid 2px #000033;
   border-radius: 10px;
   font-family: inherit;
-  font-size: 14px;
+  font-size: 16px;
   padding: 5px;
   color: #000033;
   background-color: #faf1e7;
@@ -96,8 +96,9 @@
   z-index: 35;
 }
 #signup-login-btn:hover {
-  background-color: #0b6623;
+  background-color: #faf1e7;
   color: #000033;
+  padding: 10px;
 }
 #signup-login-btn:active {
   color: #0b6623;

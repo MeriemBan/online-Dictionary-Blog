@@ -13,20 +13,31 @@ class UnconnectedNewPost extends Component {
       image: {},
       tags: [],
       username: "",
-      authorName: ""
+      authorName: "",
+      value: ""
     };
   }
 
   onTitleChange = event => {
     event.preventDefault();
+    console.log("EVENT", event.target);
     this.setState({ title: event.target.value });
     console.log("title", event.target.value);
   };
 
   onPostChange = event => {
     event.preventDefault();
-    this.setState({ post: event.target.value });
+    // this.setState({ post: event.target.value });
     console.log("post", event.target.value);
+    // let area = document.getElementById("input-body");
+    // console.log("EVENT post", event.object);
+    // let id = "input-body";
+    // console.log("POST value", area.value);
+    // console.log("POST val", area.val());
+    // console.log("POST target", event.target.id);
+    // console.log("this.state.value", this.state.value);
+    this.setState({ post: event.target.value });
+    // console.log("post", area.val());
   };
 
   onImageChange = event => {
@@ -110,13 +121,21 @@ class UnconnectedNewPost extends Component {
               </div>
               <div className="newPost-postBody-and-input">
                 <h4 id="newPost-label">Post body</h4>
-                <input
+                {/* <input
                   id="newPost-input-body"
                   type="text"
                   // placeholder="Body"
                   value={this.state.post}
                   onChange={this.onPostChange}
-                />
+                /> */}
+                <textarea
+                  id="post"
+                  name="post"
+                  rows="20"
+                  cols="50"
+                  value={this.state.post}
+                  onChange={this.onPostChange}
+                ></textarea>
               </div>
               <div className="newPost-tag-and-select-option">
                 <h4 id="newPost-label">

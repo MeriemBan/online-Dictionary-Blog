@@ -19,7 +19,7 @@ h1 {
   margin-right: auto;
   line-height: 5%;
   background-image: url("/images/colored_background.jpeg");
-  opacity: 0.9;
+  opacity: 1;
 }
 .dico-search-container {
   /* border: 1px solid yellow; */

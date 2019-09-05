@@ -45,12 +45,10 @@ let reducer = (state, action) => {
 const store = createStore(
   reducer,
   {
-    // loggedIn: false,
     loggedIn: false,
     signedIn: false,
     username: "",
     blogs: [],
-    // searchResult: [],
     likes: 0,
     postId: "",
     user: []

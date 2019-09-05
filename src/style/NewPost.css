@@ -38,6 +38,7 @@
 
 .newPost-auhorName-and-input {
   /* border: 1px solid yellow; */
+
   float: left;
   width: 100%;
   line-height: 1.5em;
@@ -99,11 +100,13 @@
 #newPost-input {
   /* margin-left: 10px; */
   width: 80%;
-  background-color: #faf1e7;
-  border: 1px solid #faf1e7;
+  border: solid 1px #000033;
   justify-content: center;
   padding-bottom: 10px;
   border-radius: 10px;
+}
+#newPost-input:hover {
+  background-color: #faf1e7;
 }
 
 #newPost-select-tags {
@@ -146,7 +149,7 @@
 }
 #newPost-input-body:hover,
 #newPost-input:hover {
-  background-color: white;
+  background-color: #faf1e7;
 }
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
@@ -175,4 +178,12 @@ input[type="file" i] {
 #select-image-button:hover {
   background-color: #000033;
   color: #faf1e7;
+}
+textarea {
+  border: solid 1px #000033;
+  width: 80%;
+}
+
+textarea:hover {
+  background-color: #faf1e7;
 }
