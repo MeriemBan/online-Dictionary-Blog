@@ -35,6 +35,9 @@ let reducer = (state, action) => {
   if (action.type === "increase-likes") {
     return { ...state, postId: action.postId, likes: action.likes };
   }
+  if (action.type === "user-profile") {
+    return { ...state, user: action.user };
+  }
 
   return state;
 };
@@ -43,13 +46,14 @@ const store = createStore(
   reducer,
   {
     // loggedIn: false,
-    loggedIn: true,
+    loggedIn: false,
     signedIn: false,
     username: "",
     blogs: [],
     // searchResult: [],
     likes: 0,
-    postId: ""
+    postId: "",
+    user: []
   },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );

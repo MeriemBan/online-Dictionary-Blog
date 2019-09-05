@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { PassThrough } from "stream";
+// import { PassThrough } from "stream";
 // import css file
 import "./style/Blog_details.css";
 
@@ -104,10 +104,8 @@ class UnconnectedBlogDetails extends Component {
                         {blogPost.likes > 1
                           ? blogPost.likes + " likes "
                           : blogPost.likes + " like "}
-                        <button id="post-like-btn" onClick={this.likeIt}>
-                          <b>Like it!</b>
-                        </button>
                       </div>
+
                       <div
                         className="post-tags"
                         style={{
@@ -117,6 +115,9 @@ class UnconnectedBlogDetails extends Component {
                       >
                         {"#" + blogPost.tags.split(",").join("   #")}
                       </div>
+                      <button id="post-like-btn" onClick={this.likeIt}>
+                        <b>Like it!</b>
+                      </button>
                     </div>
                     {console.log("blogPost.image", blogPost.image)}
                     <div className="post-img-and-text">

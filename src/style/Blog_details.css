@@ -13,6 +13,7 @@
 .post-header-box {
   /* border: 1px solid pink; */
   line-height: 150%;
+  /* border: 1px solid pink; */
 }
 .post-header-and-image {
   line-height: 180%;
@@ -35,19 +36,21 @@
   padding-left: 40px;
 }
 .post-img-box {
+  padding-top: 5px;
   padding: 20px;
   text-align: center;
+  /* border: 1px solid red; */
 }
 .post-img-and-text {
   /* border: 1px solid red; */
   /* display: flex;
   align-items: center; */
-  padding: 40px;
+  padding: 0 40px 40px 40px;
 }
 #post-img {
   width: 300px;
   height: 300px;
-  /* object-fit: cover; */
+  object-fit: cover;
 }
 .post-text {
   /* border: 1px solid red; */
@@ -60,6 +63,7 @@
 .post-tags-and-likes {
   display: block;
   padding-left: 40px;
+  /* border: 1px solid pink; */
 }
 .post-tags {
   color: #000033;
@@ -97,17 +101,11 @@
 
 .review-input {
   /* border: solid 1px brown; */
-  /* width: 750px; */
-
   height: 50px;
   font-size: 14px;
   border-radius: 10px;
   border: 2px solid #cf4d35;
-
-  /* display: inline-block;*/
-  width: 200%;
-  /* text-align: start;
-  vertical-align: top; */
+  width: 400%;
 }
 
 .review-submit {
@@ -123,4 +121,7 @@
 
 #post-like-btn {
   font-size: 14px;
+  border: solid 1px #000033;
+  border-radius: 10px;
+  margin-left: 0;
 }

@@ -1,0 +1,121 @@
+.login-global-box {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  /* display: flex; */
+  /* border: 1px solid red;
+  padding: 20px 40px 40px 40px;
+  margin: 0px 40px 40px 40px; */
+  float: center;
+  display: block;
+  align-items: center;
+  justify-content: left;
+  background-image: url("/images/colored_background.jpeg");
+  z-index: 30;
+  position: absolute;
+}
+
+.login-form-box {
+  /* border: 1px solid blue; */
+  padding: 70px;
+  /* margin-top: 180px; */
+  font-family: "open sans", arial, helvetica, sans-serif;
+  /* color: #000033;
+  background-color: #faf1e7; */
+  color: #faf1e7;
+  background-color: #000033;
+
+  font-size: 25px;
+  text-align: center;
+  justify-content: center;
+  float: center;
+
+  vertical-align: middle;
+  line-height: 1.5em;
+}
+#dico-name {
+  color: #faf1e7;
+  border-bottom: 1px solid #faf1e7;
+  font-size: 35px;
+}
+#sinup-login-username {
+  width: 40%;
+  background-color: #faf1e7;
+  border: 1px solid #faf1e7;
+  justify-content: center;
+  padding: 5px 0 5px 0;
+  border-radius: 10px;
+  cursor: text;
+}
+
+#sinup-login-password {
+  width: 40%;
+  background-color: #faf1e7;
+  border: 1px solid #faf1e7;
+  justify-content: center;
+  padding: 5px 0 5px 0;
+  border-radius: 10px;
+  cursor: text;
+}
+#sinup-login-username:active,
+#sinup-login-password:active {
+  background-color: white;
+}
+.go-to-signup-login {
+  text-decoration: underline;
+  color: #faf1e7;
+  font-size: 22px;
+  font-family: "open sans", arial, helvetica, sans-serif;
+  text-align: right;
+  text-decoration: underline;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+.go-to-signup-login:-webkit-any-link {
+  color: inherit;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.go-to-signup-login:hover {
+  /* background-color: #faf1e7; */
+  color: #cf4d35;
+  text-decoration: none;
+  /* color: #000033; */
+}
+#signup-login-btn {
+  border: solid 2px #000033;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 5px;
+  color: #000033;
+  background-color: #faf1e7;
+  cursor: pointer;
+  z-index: 35;
+}
+#signup-login-btn:hover {
+  background-color: #0b6623;
+  color: #000033;
+}
+#signup-login-btn:active {
+  color: #0b6623;
+}
+
+.signup-login-label {
+  font-size: 18px;
+  font-family: "open sans", arial, helvetica, sans-serif;
+  margin-bottom: 0;
+  line-height: 1.5em;
+}
+.sinup-login-username-label-input {
+  /* border: 1px solid yellow; */
+  padding: 10px;
+  margin: 20px 20px 0 20px;
+}
+.sinup-login-password-label-input {
+  /* border: 1px solid yellow; */
+  padding: 10px;
+  margin: 0 20px 0 20px;
+}

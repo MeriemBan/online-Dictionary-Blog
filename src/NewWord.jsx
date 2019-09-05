@@ -44,6 +44,7 @@ class UnconnectedNewWord extends Component {
   // upload a new word
   submitNewWord = async () => {
     event.preventDefault();
+    // if(this.state.english_word === "" || this.state.english_word === "")
     let data = new FormData();
     data.append("englishWord", this.state.english_word);
     data.append("frenchWord", this.state.french_word);
@@ -60,7 +61,6 @@ class UnconnectedNewWord extends Component {
       console.log("body success");
       alert("word successfully added");
       this.props.history.push("/dictionary");
-      // <Redirect to="/dictionary" />;
       return;
     }
     console.log("not successful");
@@ -112,11 +112,11 @@ class UnconnectedNewWord extends Component {
           </div>
 
           <div className="newWord-main-box-head">
-            <h1>Upload new words</h1>
+            <h1>ADD NEW WORDS</h1>
           </div>
           <div className="newWord-main-box-inside">
             <div>
-              <button className="newWord-category">Upload a word</button>
+              <button className="newWord-category">upload a word</button>
             </div>
             <form onSubmit={this.submitNewWord}>
               <div className="newWord-form">
@@ -165,7 +165,7 @@ class UnconnectedNewWord extends Component {
               <div className="upload-multiple-words">
                 {/* only admin */}
                 <button className="newWord-category" onClick={this.upload}>
-                  Upload multiple words
+                  upload multiple words
                 </button>{" "}
                 <h4 id="upload-label"> One click </h4>
               </div>

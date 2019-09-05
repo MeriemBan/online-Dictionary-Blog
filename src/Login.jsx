@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 // import css file
-import "./style/Signup_Login.css";
+import "./style/Signup-Login.css";
 
 class UnconnectedLogin extends Component {
   constructor(props) {
@@ -18,9 +19,18 @@ class UnconnectedLogin extends Component {
     console.log(event.target.value);
     this.setState({ username: event.target.value });
   };
+  // fetchUser = async () => {
+  //   console.log("fetch user");
+  //   let response = await fetch("/user");
+  //   let responseBody = await response.text();
+  //   let parsed = JSON.parse(responseBody);
+  //   console.log("parsed[0]", parsed[0]);
+  //   this.props.dispatch({ type: "user-profile", user: parsed[0] });
+  // };
 
   submitHandler = async event => {
     event.preventDefault();
+
     console.log("login");
     console.log(this.state);
     let data = new FormData();
@@ -35,12 +45,22 @@ class UnconnectedLogin extends Component {
     let body = JSON.parse(responseBody);
     console.log("body.success", body.success);
     if (body.success) {
+      console.log("body", body);
       this.setState({ username: this.state.username });
       this.props.dispatch({
         type: "login-successful",
         username: this.state.username
       });
+
+      console.log("fetch user");
+      let responseUser = await fetch("/user");
+      let responseBodyUser = await responseUser.text();
+      let parsedUser = JSON.parse(responseBodyUser);
+      console.log("parsedUser[0]", parsedUser[0]);
+      this.props.dispatch({ type: "user-profile", user: parsedUser[0] });
+
       this.props.history.push("/dictionary");
+
       return;
     }
     alert("Oops, wrong username or password, please try again");
@@ -50,33 +70,49 @@ class UnconnectedLogin extends Component {
   render = () => {
     return (
       <div className="login-global-box">
-        <form onSubmit={this.submitHandler}>
-          <div>Enter your username</div>
+        <div className="login-form-box">
           <div>
-            <input
-              type="text"
-              id="username"
-              placeholder="Your username here"
-              name="username"
-              value={this.state.username}
-              onChange={this.usernameChangeHandler}
-            />
+            <div id="dico-name">
+              INFORMATION SCIENCE ~ TRILINGUAL DICTIONARY
+            </div>
           </div>
-          <div>Enter your password </div>
-          <div>
-            <input
-              type="text"
-              id="password"
-              placeholder="Your password here"
-              name="password"
-              value={this.state.password}
-              onChange={this.passwordChangeHandler}
-            />
+
+          <div className="go-to-signup-login">
+            <Link className="go-to-signup-login" to={"/signup"}>
+              {" "}
+              Sign up here
+            </Link>
           </div>
-          <div>
-            <button>Login</button>
-          </div>
-        </form>
+
+          <form onSubmit={this.submitHandler}>
+            <div className="sinup-login-username-label-input">
+              <div className="signup-login-label">Enter your username</div>
+              <input
+                type="text"
+                id="sinup-login-username"
+                // placeholder="Your username here"
+                name="username"
+                value={this.state.username}
+                onChange={this.usernameChangeHandler}
+              />
+            </div>
+
+            <div className="sinup-login-password-label-input">
+              <div className="signup-login-label">Enter your password </div>
+              <input
+                type="password"
+                id="sinup-login-password"
+                // placeholder="Your password here"
+                name="password"
+                value={this.state.password}
+                onChange={this.passwordChangeHandler}
+              />
+            </div>
+            <div>
+              <button id="signup-login-btn">Login</button>
+            </div>
+          </form>
+        </div>
       </div>
     );
   };

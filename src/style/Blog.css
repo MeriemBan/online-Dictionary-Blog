@@ -34,8 +34,11 @@
 }
 
 #blogimg {
-  width: 275px;
-  height: 195px;
+  /* width: 230px;
+  height: 195px; */
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
   opacity: 0.6;
   transition: 0.3s;
 }
@@ -60,12 +63,14 @@
   line-height: 150%;
 }
 .entry-header-and-image-box {
+  position: sticky;
+  position: -webkit-sticky;
   border: 2px solid #000033;
   display: flex;
   justify-items: center;
   width: 100%;
   background-color: #faf1e7;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   padding: 5px;
   border-radius: 20px;
 }
@@ -194,4 +199,10 @@ var {
 }
 #blog-author {
   color: #cf4d35;
+}
+
+.bnt-back-next {
+  /* border: 1px solid red; */
+  justify-content: center;
+  float: right;
 }

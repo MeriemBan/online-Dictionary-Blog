@@ -1,0 +1,58 @@
+.settings-global-box {
+  /* border: 1px solid red; */
+  padding: 20px 40px 40px 40px;
+  margin: 0px 40px 40px 40px;
+  /* float: left; */
+  float: center;
+  display: block;
+  background-color: transparent;
+  align-items: center;
+  justify-content: center;
+}
+.settings-main-box-head {
+  /* border: 1px solid blue; */
+  background-color: transparent;
+  /* background-image: url("/images/colored_background.jpeg"); */
+  /* color: #232323; */
+  padding: 20px;
+  font-family: "open sans", arial, helvetica, sans-serif;
+  color: #000033;
+  font-size: 25px;
+  text-align: center;
+  justify-content: center;
+}
+
+.settings-details {
+  /* border: 1px solid yellow; */
+  padding: 20px;
+  margin: 0px 40px 40px 40px;
+  border: 2px solid #000033;
+  float: center;
+  align-items: center;
+  justify-content: center;
+  background-color: #faf1e7;
+  border-radius: 10px;
+  line-height: 3em;
+}
+#settings-label {
+  color: #cf4d35;
+  font-size: 18px;
+}
+
+.settings-profile-item {
+  display: flex;
+}
+#settings-profile-value {
+  margin-left: 10px;
+}
+#settings-link {
+  color: #cf4d35;
+  font-size: 18px;
+  text-decoration: underline;
+}
+#settings-link:hover {
+  background-color: #f0f0f0;
+}
+#settings-access-options {
+  margin-left: 30px;
+}

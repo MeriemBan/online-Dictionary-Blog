@@ -27,7 +27,7 @@
   border: 2px solid #000033;
   /* padding: 15px 40px 40px 40px; */
   padding: 20px;
-  margin: 0px 40px 40px 40px;
+  margin: 0px 40px 40px 70px;
   float: center;
   align-items: center;
   justify-content: center;
@@ -42,8 +42,10 @@
   width: 100%;
   line-height: 1.5em;
   text-align: left;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 .newPost-title-and-input {
   /* border: 1px solid green; */
@@ -101,6 +103,7 @@
   border: 1px solid #faf1e7;
   justify-content: center;
   padding-bottom: 10px;
+  border-radius: 10px;
 }
 
 #newPost-select-tags {
@@ -116,6 +119,7 @@
   border: 1px solid #faf1e7;
   justify-content: center;
   padding-bottom: 200px;
+  border-radius: 10px;
 }
 
 #newPost-input-image {
@@ -131,7 +135,7 @@
   /* background-color: #f8f8ff; */
   background-color: #000033;
   color: #faf1e7;
-  font-size: 18px;
+  font-size: inherit;
   justify-content: right;
   margin-top: 10px;
   cursor: pointer;
@@ -140,7 +144,7 @@
   background-color: #000033;
   color: #faf1e7;
 }
-
+#newPost-input-body:hover,
 #newPost-input:hover {
   background-color: white;
 }
@@ -155,13 +159,13 @@
 }
 
 input[type="file" i] {
-  display: none;
+  /* display: none; */
 }
 #select-image-button {
   border: solid 1px #000033;
   border-radius: 10px;
-  font-family: "open sans", arial, helvetica, sans-serif;
-  font-size: 14px;
+  font-family: inherit;
+  font-size: inherit;
   padding: 5px;
   color: #000033;
   background-color: #faf1e7;

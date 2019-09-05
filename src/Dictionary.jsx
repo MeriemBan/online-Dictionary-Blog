@@ -25,28 +25,22 @@ class UnconnectedDictionary extends Component {
   handleSearchChange = async event => {
     event.preventDefault();
     console.log("event.target.value", event.target.value);
-    this.setState(
-      {
-        ...this.state,
-        enteredWord: event.target.value
-      },
-      async () => {
-        let data = new FormData();
-        data.append("language", this.state.defaultLanguage);
-        data.append("searchInput", this.state.enteredWord);
-        data.append("page", this.state.page);
-        let response = await fetch("/search-word", {
-          method: "POST",
-          body: data
-        });
-        let responseBody = await response.text();
+    this.setState({ enteredWord: event.target.value }, async () => {
+      let data = new FormData();
+      data.append("language", this.state.defaultLanguage);
+      data.append("searchInput", this.state.enteredWord);
+      data.append("page", this.state.page);
+      let response = await fetch("/search-word", {
+        method: "POST",
+        body: data
+      });
+      let responseBody = await response.text();
 
-        let parsed = JSON.parse(responseBody);
-        console.log("parsed", parsed);
+      let parsed = JSON.parse(responseBody);
+      console.log("parsed", parsed);
 
-        this.setState({ searchResult: parsed });
-      }
-    );
+      this.setState({ searchResult: parsed });
+    });
   };
   moreResults = async () => {
     event.preventDefault();
@@ -96,7 +90,14 @@ class UnconnectedDictionary extends Component {
   render = () => {
     // console.log("this.props.username", this.props.username);
     console.log("this.state.searchResult", this.state.searchResult);
+    // let results;
+    // if (this.state.searchResult !== []) {
+    //   results = this.state.searchResult.slice(0, 2);
+    //   return;
+    // }
     let results = this.state.searchResult.slice(0, 2);
+    console.log("results", results);
+
     return (
       <div>
         <div className="Nav-back">
@@ -108,9 +109,12 @@ class UnconnectedDictionary extends Component {
           <div className="dico-header-box">
             <div className="dico-search-container">
               {/* <div className="dico-title"> */}
-              <h1 className="dico-title">
-                Explore our library of over than 1000 words!{" "}
-              </h1>
+              <div className="dico-title">
+                <h1>INFORMATION SCIENCE library of over than 1000 words!</h1>
+                <br />
+
+                <div id="dico-lang">english, french and arabic</div>
+              </div>
               {/* </div> */}
 
               <div className="search-langChoice-pagination">

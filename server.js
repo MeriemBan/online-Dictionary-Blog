@@ -43,10 +43,6 @@ app.use("/images", express.static(__dirname + "/uploads"));
 
 // Your endpoints go after this line
 
-// GET endpoints
-// GET dictionary content
-// ...
-
 // GET blog posts
 app.get("/all-posts", (req, res) => {
   dbo
@@ -132,11 +128,7 @@ app.post("/login", upload.none(), (req, res) => {
 
       sessions[sessionId] = user.username;
       console.log("sessions", sessions);
-      res.send(
-        JSON.stringify({
-          success: true
-        })
-      );
+      res.send(JSON.stringify({ success: true }));
       return;
     }
     res.send(JSON.stringify({ success: false }));
@@ -164,6 +156,25 @@ app.post("/delete-dico", (req, res) => {
     }
     res.send(JSON.stringify({ success: true }));
   });
+});
+
+app.get("/user",  (req, res) => {
+  let sessionId = req.cookies.sid;
+  let username = sessions[sessionId];
+  console.log('username', username)
+  dbo
+    .collection("users")
+    .find({ username: username })
+    .toArray((err, user) => {
+      if (err) {
+        console.log("error", err);
+        res.send("fail");
+        return;
+      }
+    
+      res.send(JSON.stringify(user));
+    });
+      // console.log("user", user);
 });
 
 // search-word
@@ -300,7 +311,7 @@ app.post("/upload-dico", upload.none(), (req, res) => {
 app.post("/new-post", upload.single("file"), (req, res) => {
   console.log("/new-post endpoint");
   console.log("request to /new-post body", req.body);
-  
+
   let time = new Date();
   let formattedTime = time.toLocaleString(undefined, {
     year: "2-digit",

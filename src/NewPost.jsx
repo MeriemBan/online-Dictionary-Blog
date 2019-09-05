@@ -83,13 +83,13 @@ class UnconnectedNewPost extends Component {
             </button>
           </div>
           <div className="newPost-main-box-head">
-            <h1>Create your blog post</h1>
+            <h1>CREATE YOUR BLOG POST</h1>
           </div>
 
           <div className="newPost-main-box-inside">
             <form onSubmit={this.handleSubmitPost}>
               <div className="newPost-auhorName-and-input">
-                <h4 id="newPost-label">First Name & Last Name</h4>
+                <h4 id="newPost-label">Author's First Name & Last Name</h4>
                 <input
                   id="newPost-input"
                   type="text"
@@ -160,9 +160,9 @@ class UnconnectedNewPost extends Component {
                   name="file"
                   onChange={this.onImageChange}
                 />
-                <label id="select-image-button" for="file">
-                  Select your blog image
-                </label>
+                {/* <label id="select-image-button" for="file">
+                  select your blog image
+                </label> */}
               </div>
               <input id="newPost-btn-post" type="submit" value="post" />
             </form>

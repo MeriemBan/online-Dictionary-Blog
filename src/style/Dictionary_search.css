@@ -30,13 +30,15 @@ h1 {
   justify-content: center;
 }
 .search-bar-container {
-  border: 1px solid brown;
+  /* border: 1px solid brown; */
 }
 
 #search-bar {
-  position: absolute;
+  /* position: absolute; */
+  position: sticky;
+  position: -webkit-sticky;
   /* top: 50; */
-  left: 20%;
+  /* left: 20%; */
   z-index: 10;
   padding: 2em 2.5%;
   background: 0;
@@ -48,10 +50,11 @@ h1 {
   padding: 10px;
   /* border: 2px solid #cf4d35; */
   align-items: center;
+  text-align: center;
   /* margin: 30px; */
-  float: right;
-  overflow: hidden;
-  width: 60%;
+  float: center;
+  /* overflow: hidden; */
+  width: 100%;
   background-color: #faf1e7;
   /* -webkit-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out; */
@@ -85,7 +88,7 @@ option {
   min-height: 1.2em;
   padding: 0px 15px 1px;
   border-radius: 20px;
-  border: #f0f0f0;
+  border: #faf1e7;
   /* background-color: #f8f8ff; */
   background-color: #faf1e7;
   font-size: 18px;
@@ -115,6 +118,7 @@ select {
   /* left: 20%; */
   justify-content: center;
   text-align: center;
+  line-height: 2em;
 }
 #search-bar {
   /* border: 1px solid yellow; */
@@ -124,6 +128,12 @@ select {
   top: 50%;
   justify-content: center;
 }
+#dico-lang {
+  font-size: 22px;
+  font-weight: 600;
+  font-style: italic;
+}
+
 #lang-options {
   /* border: 1px solid yellow; */
   /* position: absolute;

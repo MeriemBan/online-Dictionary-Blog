@@ -26,7 +26,7 @@
   /* border: 2px solid #000033; */
   /* padding: 15px 40px 40px 40px; */
   padding: 20px;
-  margin: 0px 40px 40px 40px;
+  margin: 0px 40px 40px 50px;
   float: center;
   align-items: center;
   justify-content: center;
@@ -77,22 +77,26 @@
 }
 #newWord-input-arabic {
   width: 80%;
-  background-color: white;
+  background-color: #faf1e7;
   border: 1px solid #faf1e7;
   justify-content: center;
   padding-bottom: 10px;
   text-align: right;
+  border-radius: 10px;
+  padding: 5px 0 5px 0;
 }
 #newWord-input {
   width: 80%;
-  background-color: white;
+  background-color: #faf1e7;
   border: 1px solid #faf1e7;
   justify-content: center;
   padding-bottom: 10px;
+  border-radius: 10px;
+  padding: 5px 0 5px 0;
 }
 #newWord-input-arabic:hover,
 #newWord-input:hover {
-  background-color: #faf1e7;
+  background-color: white;
 }
 #newWord-single-upload {
   background-color: #faf1e7;
@@ -100,6 +104,7 @@
   font-weight: 100;
   border-radius: 10px;
   margin-top: 10px;
+  font-size: inherit;
 }
 #newWord-single-upload:hover {
   background-color: #000033;
