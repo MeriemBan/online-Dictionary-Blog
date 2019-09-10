@@ -39,7 +39,9 @@ class UnconnectedNewWord extends Component {
       credentials: "include"
     });
     let responseBody = await response.text();
+    // add if body.success is true
     alert("words successfully uploaded!");
+    this.props.history.push("/dictionary");
   };
 
   // upload a new word
@@ -75,6 +77,7 @@ class UnconnectedNewWord extends Component {
       method: "POST"
     });
     let responseBody = await response.text();
+    this.props.history.push("/dictionary");
   };
 
   englishWordChange = event => {

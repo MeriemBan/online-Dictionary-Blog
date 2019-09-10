@@ -110,7 +110,7 @@ class UnconnectedDictionary extends Component {
             <div className="dico-search-container">
               {/* <div className="dico-title"> */}
               <div className="dico-title">
-                <h1>INFORMATION SCIENCE library of over than 1000 words!</h1>
+                <h1>INFORMATION SCIENCE library of over 1000 words!</h1>
                 <br />
 
                 <div id="dico-lang">english, french and arabic</div>
