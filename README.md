@@ -14,4 +14,6 @@
 - **Back-end :** Node.js, Express, MongoDB
 - **Other tools:** Git, Github, Postman
 
+---
+
   *Project video available*: https://bit.ly/2miVscZ
