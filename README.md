@@ -14,9 +14,10 @@
 - **Back-end :** Node.js, Express, MongoDB
 - **Other tools:** Git, Github, Postman
 
-*Project video available*: https://bit.ly/2miVscZ
+  *Project video available*: https://bit.ly/2miVscZ
 
 ---
+
 To start the server, run `nodemon server.js`
 
 Modify the `server.js` file to add endpoints
