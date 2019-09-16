@@ -1,4 +1,5 @@
 **Dictionary and Blog - Web App – individual project**
+---
 
 - **Front-end :** JavaScript, React, Redux, CSS
 - **Back-end :** Node.js, Express, MongoDB
@@ -12,6 +13,7 @@
 - display blog posts / create new blog posts (admin only)
 
 *Project video available*: https://bit.ly/2miVscZ
+
 ---
 
 - signup / login
