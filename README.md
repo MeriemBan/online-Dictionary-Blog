@@ -10,9 +10,9 @@ Trilingual Dictionary and Blog created from scratch that makes available the fol
 
 ***
 
-- Front-end : JavaScript, React, Redux, CSS
-- Back-end : Node.js, Express, MongoDB
-- Other tools: Git, Github, Postman
+**- Front-end :** JavaScript, React, Redux, CSS
+**- Back-end :** Node.js, Express, MongoDB
+**- Other tools:** Git, Github, Postman
 
 *Project video available*: https://bit.ly/2miVscZ
 
