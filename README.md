@@ -1,4 +1,4 @@
-Dictionary and Blog - Web App – individual project
+**Dictionary and Blog - Web App – individual project**
 
 Trilingual Dictionary and Blog created from scratch that makes available the following functionalities:
 
