@@ -1,6 +1,6 @@
 **Dictionary and Blog - Web App – individual project**
 
-Trilingual Dictionary and Blog created from scratch that makes available the following functionalities:
+*Trilingual Dictionary and Blog created from scratch that makes available the following functionalities:*
 
 - signup / login
 - user management with access control
