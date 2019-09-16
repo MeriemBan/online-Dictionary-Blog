@@ -3,6 +3,7 @@
 *Trilingual Dictionary and Blog created from scratch that makes available the following functionalities:*
 
 - signup / login
+<img src="./images/signup-login.png" height="350px" width="550px">
 - user management with access control
 - search engine / back-end pagination
 - upload dictionary in one click / delete dictionary  / add a word - (admin only)
