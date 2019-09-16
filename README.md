@@ -3,7 +3,7 @@
 *Trilingual Dictionary and Blog created from scratch that makes available the following functionalities:*
 
 - signup / login
-<img src="Screen Shot 2019-09-15 at 10.52.52 PM.png"/>
+<img src="./Screen Shot 2019-09-15 at 10.52.52 PM.png"/>
 - user management with access control
 - search engine / back-end pagination
 - upload dictionary in one click / delete dictionary  / add a word - (admin only)
