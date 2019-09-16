@@ -2,11 +2,13 @@ Dictionary and Blog - Web App – individual project
 
 Trilingual Dictionary and Blog created from scratch that makes available the following functionalities:
 
-- signup / login
-- user management with access control
-- search engine / back-end pagination
-- upload dictionary in one click / delete dictionary  / add a word - (admin only)
-- display blog posts / create new blog posts (admin only)
+1- signup / login
+2- user management with access control
+3- search engine / back-end pagination
+4- upload dictionary in one click / delete dictionary  / add a word - (admin only)
+5- display blog posts / create new blog posts (admin only)
+
+***
 
 - Front-end : JavaScript, React, Redux, CSS
 - Back-end : Node.js, Express, MongoDB
