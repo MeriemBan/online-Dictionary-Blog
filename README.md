@@ -6,7 +6,7 @@
 
 *Project video available*: https://bit.ly/2miVscZ
 
-*Trilingual Dictionary and Blog created from scratch that makes available the following functionalities:*
+*The project consists in creating a Trilingual Dictionary and Blog from scratch and making available the following functionalities:*
 
 - signup / login
 <img src="./images/signup-login.png" height="350px" width="550px">
