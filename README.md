@@ -4,14 +4,14 @@
 - **Back-end :** Node.js, Express, MongoDB
 - **Other tools:** Git, Github, Postman
 
-*Project video available*: https://bit.ly/2miVscZ
-
 **The project consists in creating a Trilingual Dictionary and Blog from scratch and making available the following functionalities:**
 - signup / login
 - user management with access control
 - search engine / back-end pagination
 - upload dictionary in one click / delete dictionary  / add a word - (admin only)
 - display blog posts / create new blog posts (admin only)
+
+*Project video available*: https://bit.ly/2miVscZ
 ---
 
 - signup / login
